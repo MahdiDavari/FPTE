@@ -181,8 +181,6 @@ for strain_sing in [e, -e]:
 
 
     index = 0
-    print(np.size(deformations))
-    print(lat_type)
     for i in deformations:
         index += 1
         new_latt_conv = new_lattice(i, lattice)
