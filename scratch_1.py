@@ -45,11 +45,6 @@ else:
     sys.stderr.write('You should provide lattice type, i.e., -lat. For more information, use -h')
     sys.exit(1)
 
-#### Only for test purposes:
-# output="POSCAR"
-# files_name = "POSCAR"
-# e = 0.01
-# lat_type = 'HEX'
 
 def clean_lines(string_list, remove_empty_lines=True):
     """
@@ -192,22 +187,14 @@ for strain_sing in [e, -e]:
         index += 1
         new_latt_conv = new_lattice(i, lattice)
         output_file_name = output+str(int(np.sign(strain_sing)))+'--'+str(index)
-        # with open(output+np.sign(strain_sing)+str(index),'a+') as f:
         with open(output_file_name, 'a+') as f:
             f.write(str(first_line))
             f.write(str(scale)+'\n')
-            f.write('%40s' % ('\n'.join(' '.join(str(cell) for cell in row) for row in new_latt_conv)+'\n'))#####np.matmul(i, lattice))+'\n'))
+            f.write('%40s' % ('\n'.join(' '.join(str(cell) for cell in row) for row in new_latt_conv)+'\n'))
             f.write(' '.join(str(symbols) for symbols in species))#+'\n')
             f.write(' '.join(str(atom_num) for atom_num in species_num))#+'\n')
             f.write(coordinate_type)
             f.write('\n'.join(' '.join(str(coor) for coor in line) for line in positions))
         f.close()
 
-
-# For Hexagonal Lattice
-# sig1 = (c11*e + c22*e)/2.0
-# sig2 = c12*(np.sqrt((1+e)/(1-e))-1)+c11*(np.sqrt((1-e)/(1+e))-1)
-# sig3 = c33*e
-# sig5 = c44*e*2
-# sig2=  c12*(((1+e)**(-1/3))-1) + c11*(((1+e)**(-1/3))-1)+c13*(((1+e)**(2/3))-1)
 
