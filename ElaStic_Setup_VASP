@@ -6,16 +6,16 @@
 # AUTHOR:
 # Rostam Golesorkhtabar
 # r.golesorkhtabar@gmail.com
-# 
+#
 # DATE:
 # Sun Jan 01 00:00:00 2012
 #
 # SYNTAX:
 # python ElaStic_Setup_ESPRESSO.py
 #        ElaStic_Setup_ESPRESSO
-# 
+#
 # EXPLANATION:
-# 
+#
 #__________________________________________________________________________________________________
 
 from sys   import stdin
@@ -127,7 +127,7 @@ LC_Dic = {              \
 'TII':'Tetragonal II'  ,\
 'O'  :'Orthorhombic'   ,\
 'M'  :'Monoclinic'     ,\
-'N'  :'Triclinic'} 
+'N'  :'Triclinic'}
 
 LT_Dic = {              \
 'CI' :'Cubic'          ,\
@@ -140,7 +140,7 @@ LT_Dic = {              \
 'TII':'Tetragonal'     ,\
 'O'  :'Orthorhombic'   ,\
 'M'  :'Monoclinic'     ,\
-'N'  :'Triclinic'} 
+'N'  :'Triclinic'}
 
 ibravDic = {            \
 '1' :'Cubic'           ,\
@@ -270,70 +270,72 @@ with open(files_name, 'r') as f:
 #         SGN_explanation = SGlins[i].strip()
 #         break
 #
-# if (1 <= SGN and SGN <= 2):      # Triclinic
-#     LC = 'N'
-#     if (ordr == 2): ECs = 21
-#     if (ordr == 3): ECs = 56
-#
-# elif(3 <= SGN and SGN <= 15):    # Monoclinic
-#     LC = 'M'
-#     if (ordr == 2): ECs = 13
-#     if (ordr == 3): ECs = 32
-#
-# elif(16 <= SGN and SGN <= 74):   # Orthorhombic
-#     LC = 'O'
-#     if (ordr == 2): ECs =  9
-#     if (ordr == 3): ECs = 20
-#
-# elif(75 <= SGN and SGN <= 88):   # Tetragonal II
-#     LC = 'TII'
-#     if (ordr == 2): ECs =  7
-#     if (ordr == 3): ECs = 16
-#
-# elif(89 <= SGN and SGN <= 142):  # Tetragonal I
-#     LC = 'TI'
-#     if (ordr == 2): ECs =  6
-#     if (ordr == 3): ECs = 12
-#
-# elif(143 <= SGN and SGN <= 148): # Rhombohedral II
-#     LC = 'RII'
-#     if (ordr == 2): ECs =  7
-#     if (ordr == 3): ECs = 20
-#
-# elif(149 <= SGN and SGN <= 167): # Rhombohedral I
-#     LC = 'RI'
-#     if (ordr == 2): ECs =  6
-#     if (ordr == 3): ECs = 14
-#
-# elif(168 <= SGN and SGN <= 176): # Hexagonal II
-#     LC = 'HII'
-#     if (ordr == 2): ECs =  5
-#     if (ordr == 3): ECs = 12
-#
-# elif(177 <= SGN and SGN <= 194): # Hexagonal I
-#     LC = 'HI'
-#     if (ordr == 2): ECs =  5
-#     if (ordr == 3): ECs = 10
-#
-# elif(195 <= SGN and SGN <= 206): # Cubic II
-#     LC = 'CII'
-#     if (ordr == 2): ECs =  3
-#     if (ordr == 3): ECs =  8
-#
-# elif(207 <= SGN and SGN <= 230): # Cubic I
-#     LC = 'CI'
-#     if (ordr == 2): ECs =  3
-#     if (ordr == 3): ECs =  6
-#
-# else: sys.exit('\n.... Oops ERROR: WRONG Space-Group Number !?!?!?\n')
+SGN = input('>>>> Please enter the Space Group number of the structure: ')
+SGN = int(SGN)
+
+
+if (1 <= SGN and SGN <= 2):      # Triclinic
+    LC = 'N'
+    if (ordr == 2): ECs = 21
+    if (ordr == 3): ECs = 56
+
+elif(3 <= SGN and SGN <= 15):    # Monoclinic
+    LC = 'M'
+    if (ordr == 2): ECs = 13
+    if (ordr == 3): ECs = 32
+
+elif(16 <= SGN and SGN <= 74):   # Orthorhombic
+    LC = 'O'
+    if (ordr == 2): ECs =  9
+    if (ordr == 3): ECs = 20
+
+elif(75 <= SGN and SGN <= 88):   # Tetragonal II
+    LC = 'TII'
+    if (ordr == 2): ECs =  7
+    if (ordr == 3): ECs = 16
+
+elif(89 <= SGN and SGN <= 142):  # Tetragonal I
+    LC = 'TI'
+    if (ordr == 2): ECs =  6
+    if (ordr == 3): ECs = 12
+
+elif(143 <= SGN and SGN <= 148): # Rhombohedral II
+    LC = 'RII'
+    if (ordr == 2): ECs =  7
+    if (ordr == 3): ECs = 20
+
+elif(149 <= SGN and SGN <= 167): # Rhombohedral I
+    LC = 'RI'
+    if (ordr == 2): ECs =  6
+    if (ordr == 3): ECs = 14
+
+elif(168 <= SGN and SGN <= 176): # Hexagonal II
+    LC = 'HII'
+    if (ordr == 2): ECs =  5
+    if (ordr == 3): ECs = 12
+
+elif(177 <= SGN and SGN <= 194): # Hexagonal I
+    LC = 'HI'
+    if (ordr == 2): ECs =  5
+    if (ordr == 3): ECs = 10
+
+elif(195 <= SGN and SGN <= 206): # Cubic II
+    LC = 'CII'
+    if (ordr == 2): ECs =  3
+    if (ordr == 3): ECs =  8
+
+elif(207 <= SGN and SGN <= 230): # Cubic I
+    LC = 'CI'
+    if (ordr == 2): ECs =  3
+    if (ordr == 3): ECs =  6
+
+else: sys.exit('\n.... Oops ERROR: WRONG Space-Group Number !?!?!?\n')
 
 if (ordr == 2): order = 'second'
 if (ordr == 3): order = 'third'
 
 #####addd fix
-SGN_explanation='ali'
-LC = 'HI'
-ECs =  5
+SGN_explanation='SG#'
 
 
 print '\n     '+ SGN_explanation +'\
@@ -553,7 +555,7 @@ for i in Lag_strain_list:
         eta_matrix[0,0] = Lv[0]
         eta_matrix[0,1] = Lv[5]/2.
         eta_matrix[0,2] = Lv[4]/2.
-        
+
         eta_matrix[1,0] = Lv[5]/2.
         eta_matrix[1,1] = Lv[1]
         eta_matrix[1,2] = Lv[3]/2.
@@ -565,16 +567,16 @@ for i in Lag_strain_list:
         norm       = 1.0
         eps_matrix = eta_matrix
         if (linalg.norm(eta_matrix) > 0.7):
-            sys.exit('\n.... Oops ERROR: Too large deformation!\n') 
+            sys.exit('\n.... Oops ERROR: Too large deformation!\n')
 
         while( norm > 1.e-10 ):
             x          = eta_matrix - dot(eps_matrix, eps_matrix)/2.
-            norm       = linalg.norm(x - eps_matrix)      
+            norm       = linalg.norm(x - eps_matrix)
             eps_matrix = x
 
         #--- Calculating the M_new matrix ---------------------------------------------------------
         i_matrix   = array([[1., 0., 0.],
-                            [0., 1., 0.], 
+                            [0., 1., 0.],
                             [0., 0., 1.]])
         def_matrix = i_matrix + eps_matrix
     #    M_new      = dot(M_old, def_matrix)
