@@ -332,8 +332,8 @@ if (ordr == 3): order = 'third'
 
 #####addd fix
 SGN_explanation='ali'
-LC = 'O'
-ECs =  9
+LC = 'HI'
+ECs =  5
 
 
 print '\n     '+ SGN_explanation +'\
@@ -365,11 +365,11 @@ print '     The maximum Lagrangian strain is '+ str(mdr) + '\n'
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%--- Reading the number of the distorted structures ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
-NoP = input('>>>> Please enter the number of the distorted structures [odd number > 4]: ')
+NoP = input('>>>> Please enter the number of the distorted structures >= 2]: ')
 NoP = int(abs(NoP))
 
-if (NoP < 5):
-    sys.exit('\n.... Oops ERROR: The NUMBER of the distorted structures < 5 !!!!!!    \n')
+if (NoP < 1):
+    sys.exit('\n.... Oops ERROR: The NUMBER of the distorted structures < 2 !!!!!!    \n')
 if (99 < NoP):
     sys.exit('\n.... Oops ERROR: The NUMBER of the distorted structures > 99 !!!!!!   \n')
 
