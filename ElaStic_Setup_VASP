@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
-#%!%!% ------------------------------ ElaStic_Setup_ESPRESSO ------------------------------- %!%!%#
+#%!%!% ------------------------------ ElaStic_Setup_VASP---- ------------------------------- %!%!%#
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
 #
 # AUTHOR:
@@ -11,8 +11,8 @@
 # Sun Jan 01 00:00:00 2012
 #
 # SYNTAX:
-# python ElaStic_Setup_ESPRESSO.py
-#        ElaStic_Setup_ESPRESSO
+# python ElaStic_Setup_VASP.py
+#        ElaStic_Setup_VASP
 #
 # EXPLANATION:
 #
@@ -182,7 +182,7 @@ if (os.path.exists('ElaStic_PW.in')):
     print '\n.... Oops NOTICE: ElaStic found "ElaStic_PW.in". It will be used as input file.'
     INF = 'ElaStic_PW.in'
 else:
-    # INF = raw_input('\n>>>> Please enter the name of the Quantum-ESPRESSO input file: ')
+    # INF = raw_input('\n>>>> Please enter the name of structure file: (defualt POSCAR) ')
     INF = 'POSCAR'
     if (os.path.exists(INF) == False):
         sys.exit('\n.... Oops ERROR: There is NO '+ INF +' file !?!?!?    \n')
@@ -396,7 +396,7 @@ if (mdr/ptn <= interval):
 INFO= open('INFO_ElaStic','w')
 print >>INFO, 'Order of elastic constants      =', ordr           ,\
             '\nMethod of calculation           =', mthd           ,\
-            '\nDFT code name                   = Quantum ESPRESSO',\
+            '\nDFT code name                   = VASP   ',\
             '\nMaximum Lagrangian strain       =', mdr            ,\
             '\nNumber of distorted structures  =', NoP
 # '\nVolume of equilibrium unit cell =', V0, '[a.u^3]'  ,\
@@ -415,11 +415,11 @@ Dstlist = glob.glob('Dst??')
 for Dstn in Dstlist:
     os.rename(Dstn, Dstn+'_old')
 
-if (os.path.exists('Structures_ESPRESSO_old')):
-    shutil.rmtree( 'Structures_ESPRESSO_old')
+if (os.path.exists('Structures_VASP_old')):
+    shutil.rmtree( 'Structures_VASP_old')
 
-if (os.path.exists('Structures_ESPRESSO')):
-    os.rename(     'Structures_ESPRESSO', 'Structures_ESPRESSO_old')
+if (os.path.exists('Structures_VASP')):
+    os.rename(     'Structures_VASP', 'Structures_VASP_old')
 #--------------------------------------------------------------------------------------------------
 
 if (mthd == 'Energy'):
@@ -620,5 +620,5 @@ for i in Lag_strain_list:
         os.chdir('../')
     os.chdir('../')
 fdis.close()
-# os.system('mkdir Structures_ESPRESSO; cp Dst??/Dst??_??/POSCAR Structures_ESPRESSO/')
+# os.system('mkdir Structures_VASP; cp Dst??/Dst??_??/POSCAR Structures_VASP/')
 #--------------------------------------------------------------------------------------------------
