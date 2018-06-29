@@ -19,8 +19,8 @@ with open('tmp_file') as f:
 num_discard = input(
     '\n >>>> How many initial ionic steps need to be discarded in order to reach equilibration? \ '
     '\n >>>> (it is recommended to discard 1 ps at least - the default is 1000 steps): ')
-if int(num_discard) > tot or int(num_discard) < 0:
-    sys.exit("\n.... Oops ERROR:  \n")
+if (int(num_discard) > tot or int(num_discard) < 0):
+    sys.exit("\n.... Oops ERROR - your discarded part is higher than the total ionic steps:  \n")
 if num_discard == '':
     num_discard = 1000
 
