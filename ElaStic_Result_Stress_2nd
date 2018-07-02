@@ -141,12 +141,10 @@ if (mthd != 'Stress' and mthd != 'Energy'):
 l3  = INFO.readline()
 cod = l3.split()[-1]
 
-if (cod != 'WIEN2k' and cod != 'exciting' and cod != 'ESPRESSO'):
+if (cod != 'WIEN2k' and cod != 'exciting' and cod != 'ESPRESSO' and cod != 'VASP'):
     sys.exit('\n.... Oops ERROR: The DFT code is NOT clear !?!?!?'\
              '\n                 Something is WRONG in the "INFO_ElaStic" file.\n')
 
-#l4  = INFO.readline()
-#SGN = int(l4.split()[-1])
 
 #l5  = INFO.readline()
 #V0  = float(l5.split()[-2])
@@ -157,9 +155,12 @@ mdr = float(l6.split()[-1])
 l7  = INFO.readline()
 NoP = int(l7.split()[-1])
 
+
+l4  = INFO.readline()
+SGN = int(l4.split()[-1])
+
 INFO.close()
 #--------------------------------------------------------------------------------------------------
-SGN=63
 #%%%--- Calculating the Space-Group Number and classifying it ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 # NoD = Number of Deformation
 if (1 <= SGN and SGN <= 2):      # Triclinic
@@ -672,6 +673,9 @@ if (cod == 'exciting'):
     CONV = 1.
 if (cod == 'ESPRESSO'):
     CONV =-1./10.
+if (cod == 'VASP'):
+    CONV =-1./10.
+
 
 for i in range(5):
     for j in range(i+1,6):
