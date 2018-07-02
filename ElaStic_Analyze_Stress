@@ -75,12 +75,10 @@ if (mthd != 'Stress' and mthd != 'Energy'):
 l3  = INFO.readline()
 cod = l3.split()[-1]
 
-if (cod != 'WIEN2k' and cod != 'exiting' and cod != 'ESPRESSO'):
+if (cod != 'WIEN2k' and cod != 'exiting' and cod != 'ESPRESSO' and cod != 'VASP'):
     sys.exit('\n.... Oops ERROR: The DFT code is NOT clear !?!?!? \
               \n                 Something is WRONG in INFO_ElaStic file.          \n')
 
-#l4  = INFO.readline()
-#SGN = int(l4.split()[-1])
 #l5  = INFO.readline()
 #V0  = float(l5.split()[-2])
 
@@ -90,8 +88,12 @@ mdr = float(l6.split()[-1])
 l7  = INFO.readline()
 NoP =  int(l7.split()[-1])
 
+l4  = INFO.readline()
+SGN = int(l4.split()[-1])
+
+
 INFO.close()
-SGN=63
+
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%--- Calculating the Space-Group Number and classifying it ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
@@ -287,6 +289,39 @@ for i in Lag_strain_list:
                     print '\n.... Oops WARNING: Where is the "'+ \
                            Dstn_num +'.out" file !?!?!?\n'
 
+
+            if (cod == 'VASP'):
+                if (os.path.exists('OUTCAR')):
+                    os.system("grep -A 1 'in kB' OUTCAR  | tail -n 2 >"+ Dstn_num +"-stress.dat")
+
+                    if (os.path.getsize(Dstn_num+'-stress.dat')!=0):
+                        fstres = open(  Dstn_num+'-stress.dat','r')
+
+                        l1 = fstres.readline()
+			l2 = fstres.readline()
+			pullay_stree = l2.split()[-2]
+			print('The external pressure is:', float(pullay_stree)/10.)
+                        sig[0,0] = str(float(l1.split()[-6])-float(pullay_stree))
+                        sig[0,1] = l1.split()[-3]
+                        sig[0,2] = l1.split()[-1]
+
+                        sig[1,0] = l1.split()[-3]
+                        sig[1,1] = str(float(l1.split()[-5])-float(pullay_stree))
+                        sig[1,2] = l1.split()[-2]
+
+                        sig[2,0] = l1.split()[-1]
+                        sig[2,1] = l1.split()[-2]
+                        sig[2,2] = str(float(l1.split()[-4])-float(pullay_stree))
+
+                        fstres.close()
+                    else:
+                        print '\n.... Oops WARNING: No Stresses in "'+ \
+                              Dstn_num +'.out" file !?!?!?\n'
+
+                else:
+                    print '\n.... Oops WARNING: Where is the OUTCAR file !?!?!?\n'
+
+
 #--------------------------------------------------------------------------------------------------
             dm  = def_matrix
             idm = np.linalg.inv(dm)
@@ -337,6 +372,8 @@ if (cod == 'WIEN2k'  ):
 if (cod == 'exciting'):
     CONV = 1.
 if (cod == 'ESPRESSO'):
+    CONV = (1-ordr)/10.
+if (cod == 'VASP'):
     CONV = (1-ordr)/10.
 
 # NoD = Number of Deformation
