@@ -212,11 +212,12 @@ if (os.path.exists('INCAR')):
             matched = re.findall(r'ISIF', line)
             if matched:
                 is_matched = 1
-                line = line.split(' ')[-1]
+                line = line.strip().split(' ')[-1]
                 if (int(line) != 2):
                     sys.exit('\n Ooops ISIF = 3 can not be used for elastic constant calculations \n')
         if is_matched == 0:
             sys.exit('\n Ooops ISIF is missing \n')
+    file.close()
 
 
 files_name='POSCAR'
