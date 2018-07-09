@@ -21,6 +21,7 @@
 from sys   import stdin
 from numpy import *
 import numpy as np
+import re
 import subprocess
 import os.path
 import shutil
@@ -204,8 +205,21 @@ def new_lattice(deformation, old_lattice):
         new_lat[i] = np.dot(deformation, old_lattice[i])
     return new_lat
 
-files_name='POSCAR'
+if (os.path.exists('INCAR')):
+    is_matched = 0
+    with open('INCAR') as file:
+        for line in file:
+            matched = re.findall(r'ISIF', line)
+            if matched:
+                is_matched = 1
+                line = line.split(' ')[-1]
+                if (int(line) != 2):
+                    sys.exit('\n Ooops ISIF = 3 can not be used for elastic constant calculations \n')
+        if is_matched == 0:
+            sys.exit('\n Ooops ISIF is missing \n')
 
+
+files_name='POSCAR'
 with open(files_name, 'r') as f:
     texx_file = f.readlines()
     first_line = texx_file[0].strip(' ')
@@ -637,7 +651,6 @@ for i in Lag_strain_list:
         submit_job_file.write('mpirun.lsf vasp-vdw > log    \n ')  
         submit_job_file.close()
 
-	os.system('bsub < Submit_Job')
 
 
 #--------------------------------------------------------------------------------------------------
