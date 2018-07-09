@@ -170,11 +170,15 @@ if (num == 2 ): mthd = 'Stress'
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%--- Reading the order of the elastic constants ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
-print '\n     2nd  ---=>  2    \
-       \n     3rd  ---=>  3    '
-ordr = input('>>>> Please choose the order of the elastic constant (choose 2 or 3): ')
-if (ordr != 2 and ordr != 3 ):
-    sys.exit("\n.... Oops ERROR: Choose '2' or '3' \n")
+if (num == 1):
+    print '\n     2nd  ---=>  2    \
+           \n     3rd  ---=>  3    '
+    ordr = input('>>>> Please choose the order of the elastic constant (choose 2 or 3): ')
+    if (ordr != 2 and ordr != 3 ):
+        sys.exit("\n.... Oops ERROR: Choose '2' or '3' \n")
+else:
+    ordr = 2
+
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%--- Checking the input file exist ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
