@@ -651,6 +651,7 @@ for i in Lag_strain_list:
         submit_job_file.write('mpirun.lsf vasp-vdw > log    \n ')  
         submit_job_file.close()
 
+	os.system('bsub < Submit_Job')
 
 
 #--------------------------------------------------------------------------------------------------
