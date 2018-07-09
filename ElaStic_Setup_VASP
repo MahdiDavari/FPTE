@@ -631,7 +631,7 @@ for i in Lag_strain_list:
         submit_job_file.write('# BSUB -a  intelmpi          \n ')  
         submit_job_file.write('# BSUB -o  output            \n ')  
         submit_job_file.write('# BSUB -R  8                 \n ')  
-        submit_job_file.write('# BSUB -W  10:00             \n ')  
+        submit_job_file.write('# BSUB -W  1000:00           \n ')  
         submit_job_file.write('# BSUB -n  8                 \n ')  
         submit_job_file.write('# BSUB -J  Elast'+Dstn_cont2+'\n' )  
         submit_job_file.write('mpirun.lsf vasp-vdw > log    \n ')  
