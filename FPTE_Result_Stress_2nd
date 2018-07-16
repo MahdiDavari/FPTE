@@ -761,6 +761,19 @@ for i in range(6):
 print >>fo,'\n    ... Have a G00D Day, Week, Month, Year, and Century (if you are lucky) ...    '\
            '\n               Bye-Bye! Tschuess! Ciao! Poka! Zia Jian! KhodaHafez!             \n'
 fo.close()
+
+ #%%%--- Writing Cij in stdout ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
+print        '                                                  \n'\
+             '    Symmetry of the second-order elastic constant matrix in Voigt notation. \n'\
+                + head[LC] +                                                             '\n'\
+             '    Elastic constant (stiffness) matrix in GPa:                             \n'
+
+for i in range(0,6):
+    print      '',
+    for j in range(0,6):
+        print      '%11.1f'%(C[i,j]),
+    print
+
 #--------------------------------------------------------------------------------------------------
 os.chdir('../')
 os.system('cp -f Stress-vs-Strain/FPTE_2nd.out .')
