@@ -3,12 +3,15 @@
 #%%% --------------------------------- ElaStic_Analyze_Stress -------------------------------- %%%#
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
 #
-# AUTHOR:
+# AUTHORs:
+# Mahdi Davari
+# Mahdi.Davari@stonybrook.edu
+#
 # Rostam Golesorkhtabar
 # r.golesorkhtabar@gmail.com
-# 
+#
 # DATE:
-# Sun Jan 01 00:00:00 2012
+# July 01 00:00:00 2018
 #
 # SYNTAX:
 # python ElaStic_Analyze_Stress.py
