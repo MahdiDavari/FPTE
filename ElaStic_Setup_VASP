@@ -3,12 +3,16 @@
 #%!%!% ------------------------------ ElaStic_Setup_VASP---- ------------------------------- %!%!%#
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
 #
-# AUTHOR:
+# AUTHORs:
+#
+# Mahdi Davri
+# Mahdi.Davari@stonybrook.edu
+#
 # Rostam Golesorkhtabar
 # r.golesorkhtabar@gmail.com
 #
 # DATE:
-# Sun Jan 01 00:00:00 2012
+# July 01 00:00:00 2018
 #
 # SYNTAX:
 # python ElaStic_Setup_VASP.py
