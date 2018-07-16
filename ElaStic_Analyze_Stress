@@ -560,18 +560,22 @@ os.chdir('../')
 
 #--- Writing the "ElaStic_???.in" file ------------------------------------------------------------
 
-if (ordr == 2): orth  = '2nd'
-if (ordr == 3): orth  = '3rd'
+if (ordr == 2):
+    orth  = '2nd'
+    fri = open('ElaStic_' + orth + '.in', 'w')
+    for i in range(1, NoD + 1):
+        if (i < 10):
+            Dstn = 'Deform0' + str(i)
+        else:
+            Dstn = 'Deform' + str(i)
 
-fri = open('ElaStic_'+ orth +'.in', 'w')
-for i in range(1, NoD+1):
-    if (i<10):
-        Dstn = 'Deform0'+str(i)
-    else:
-        Dstn = 'Deform' +str(i)
+        print >> fri, Dstn + '   ' + str(mdr) + '      ' + str(mdr) + '      ' + str(mdr) + '      ' + str(mdr) + '      ' + str(mdr) + '       ' + str(mdr) + '  \n' \
+                                                                '       2             2            2             2             2             2       \n'
+    fri.close()
 
-    print >>fri, Dstn+'   '+ mdr+'      '+ mdr+'      '+ mdr+'      '+ mdr+'      '+ mdr+'       '+mdr+ '  \n'\
-                      '       2             2            2             2             2             2       \n'
-fri.close()
+if (ordr == 3):
+    orth  = '3rd'
+    sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
+
 #--------------------------------------------------------------------------------------------------
 os.system('rm -f Stress-vs-Strain/Grace.par')
