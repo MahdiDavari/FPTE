@@ -504,57 +504,57 @@ for i in range(1, NoD+1):
         fE.close()
 
         #--- Plotting -----------------------------------------------------------------------------
-        if (os.path.exists('Grace.par') == False):
-            os.system("cp -f $ElaSticROOT/Grace.par .")
-
-        Gf    = open('Grace.par', 'r')
-        Glines= Gf.readlines()
-        Gf.close()
-
-        TMP = []
-        if (ordr == 2):
-            for k in range(95, 122):
-                TMP.append(Glines[k])
-
-        if (ordr == 3):
-            for k in range(125, 151):
-                TMP.append(Glines[k])
-
-        for k in range(164, 219):
-            TMP.append(Glines[k])
-
-        TMP.insert(82,'    s2 legend  " n = '+str(ordr-1)+'"\n')
-        TMP.insert(74,'    s1 legend  " n = '+str(ordr+1)+'"\n')
-        TMP.insert(66,'    s0 legend  " n = '+str(ordr+3)+'"\n')
-        TMP.insert(29,'    subtitle "Plot for '+ Dstn +'_'+LSi_dic[l]+' , n = Order of polynomial fit"\n')
-
-        GdE = open(Dstn+'_'+LSi_dic[l]+'_d'+str(ordr-1)+'S.par', 'w')
-        for k in range(len(TMP)):
-            print >>GdE, TMP[k],
-        GdE.close()
-
-        os.system('xmgrace '+Dstn+'_'+LSi_dic[l]+'_d'+str(ordr-1)+'S.dat -param '+Dstn+'_'+LSi_dic[l]+'_d1S.par -saveall '\
-                            +Dstn+'_'+LSi_dic[l]+'_d'+str(ordr-1)+'S.agr &')
-
-        TMP = []
-        for k in range(154, 162):
-            TMP.append(Glines[k])
-
-        for k in range(164, 219):
-            TMP.append(Glines[k])
-
-        TMP.insert(63,'    s2 legend  " n = '+str(ordr-1)+'"\n')
-        TMP.insert(55,'    s1 legend  " n = '+str(ordr+1)+'"\n')
-        TMP.insert(47,'    s0 legend  " n = '+str(ordr+3)+'"\n')
-        TMP.insert(10,'    subtitle "Plot for '+ Dstn +'_'+LSi_dic[l]+' , n = Order of polynomial fit"\n')
-
-        CVe = open(Dstn+'_'+LSi_dic[l]+'_CVe.par', 'w')
-        for k in range(len(TMP)):
-            print >>CVe, TMP[k],
-        CVe.close()
-
-        os.system('xmgrace '+Dstn+'_'+LSi_dic[l]+'_CVe.dat -param '+Dstn+'_'+LSi_dic[l]+'_CVe.par -saveall '\
-                            +Dstn+'_'+LSi_dic[l]+'_CVe.agr &')
+        # if (os.path.exists('Grace.par') == False):
+        #     os.system("cp -f $ElaSticROOT/Grace.par .")
+        #
+        # Gf    = open('Grace.par', 'r')
+        # Glines= Gf.readlines()
+        # Gf.close()
+        #
+        # TMP = []
+        # if (ordr == 2):
+        #     for k in range(95, 122):
+        #         TMP.append(Glines[k])
+        #
+        # if (ordr == 3):
+        #     for k in range(125, 151):
+        #         TMP.append(Glines[k])
+        #
+        # for k in range(164, 219):
+        #     TMP.append(Glines[k])
+        #
+        # TMP.insert(82,'    s2 legend  " n = '+str(ordr-1)+'"\n')
+        # TMP.insert(74,'    s1 legend  " n = '+str(ordr+1)+'"\n')
+        # TMP.insert(66,'    s0 legend  " n = '+str(ordr+3)+'"\n')
+        # TMP.insert(29,'    subtitle "Plot for '+ Dstn +'_'+LSi_dic[l]+' , n = Order of polynomial fit"\n')
+        #
+        # GdE = open(Dstn+'_'+LSi_dic[l]+'_d'+str(ordr-1)+'S.par', 'w')
+        # for k in range(len(TMP)):
+        #     print >>GdE, TMP[k],
+        # GdE.close()
+        #
+        # os.system('xmgrace '+Dstn+'_'+LSi_dic[l]+'_d'+str(ordr-1)+'S.dat -param '+Dstn+'_'+LSi_dic[l]+'_d1S.par -saveall '\
+        #                     +Dstn+'_'+LSi_dic[l]+'_d'+str(ordr-1)+'S.agr &')
+        #
+        # TMP = []
+        # for k in range(154, 162):
+        #     TMP.append(Glines[k])
+        #
+        # for k in range(164, 219):
+        #     TMP.append(Glines[k])
+        #
+        # TMP.insert(63,'    s2 legend  " n = '+str(ordr-1)+'"\n')
+        # TMP.insert(55,'    s1 legend  " n = '+str(ordr+1)+'"\n')
+        # TMP.insert(47,'    s0 legend  " n = '+str(ordr+3)+'"\n')
+        # TMP.insert(10,'    subtitle "Plot for '+ Dstn +'_'+LSi_dic[l]+' , n = Order of polynomial fit"\n')
+        #
+        # CVe = open(Dstn+'_'+LSi_dic[l]+'_CVe.par', 'w')
+        # for k in range(len(TMP)):
+        #     print >>CVe, TMP[k],
+        # CVe.close()
+        #
+        # os.system('xmgrace '+Dstn+'_'+LSi_dic[l]+'_CVe.dat -param '+Dstn+'_'+LSi_dic[l]+'_CVe.par -saveall '\
+        #                     +Dstn+'_'+LSi_dic[l]+'_CVe.agr &')
 
 os.chdir('../')
 
@@ -570,8 +570,8 @@ for i in range(1, NoD+1):
     else:
         Dstn = 'Deform' +str(i)
 
-    print >>fri, Dstn+'    eta_max1     eta_max2     eta_max3     eta_max4     eta_max5     eta_max6  \n'\
-                 '        Fit_order1   Fit_order2   Fit_order3   Fit_order4   Fit_order5   Fit_order6 \n'
+    print >>fri, Dstn+'   '+ mdr+'      '+ mdr+'      '+ mdr+'      '+ mdr+'      '+ mdr+'       '+mdr+ '  \n'\
+                      '       2             2            2             2             2             2       \n'
 fri.close()
 #--------------------------------------------------------------------------------------------------
 os.system('rm -f Stress-vs-Strain/Grace.par')
