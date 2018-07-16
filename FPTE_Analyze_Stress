@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
-#%%% --------------------------------- ElaStic_Analyze_Stress -------------------------------- %%%#
+#%%% --------------------------------- FPTE_Analyze_Stress -------------------------------- %%%#
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
 #
 # AUTHORs:
@@ -14,8 +14,8 @@
 # July 01 00:00:00 2018
 #
 # SYNTAX:
-# python ElaStic_Analyze_Stress.py
-#        ElaStic_Analyze_Stress
+# python FPTE_Analyze_Stress.py
+#        FPTE_Analyze_Stress
 # 
 # EXPLANATION:
 # 
@@ -58,29 +58,29 @@ Ls_Dic={                       \
 '40':[ 5., 4., 6.,-2.,-1.,-3.],\
 '41':[-6., 3.,-2., 5.,-4., 1.]}
 
-#%!%!%--- Reading the "I'NFO_ElaStic" file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
-INFO=open('INFO_ElaStic', 'r')
+#%!%!%--- Reading the "I'NFO_FPTE" file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
+INFO=open('INFO_FPTE', 'r')
 
 l1  = INFO.readline()
 ordr= int(l1.split()[-1])
 
 if (ordr != 2 and ordr != 3):
     sys.exit('\n.... Oops ERROR: The order of the elastic constant is NOT clear !?!?!? \
-              \n                 Something is WRONG in INFO_ElaStic file.          \n')
+              \n                 Something is WRONG in INFO_FPTE file.          \n')
 
 l2  = INFO.readline()
 mthd= l2.split()[-1]
 
 if (mthd != 'Stress' and mthd != 'Energy'):
     sys.exit('\n.... Oops ERROR: The method of the calculation is NOT clear !?!?!? \
-              \n                 Something is WRONG in INFO_ElaStic file.          \n')
+              \n                 Something is WRONG in INFO_FPTE file.          \n')
 
 l3  = INFO.readline()
 cod = l3.split()[-1]
 
 if (cod != 'WIEN2k' and cod != 'exiting' and cod != 'ESPRESSO' and cod != 'VASP'):
     sys.exit('\n.... Oops ERROR: The DFT code is NOT clear !?!?!? \
-              \n                 Something is WRONG in INFO_ElaStic file.          \n')
+              \n                 Something is WRONG in INFO_FPTE file.          \n')
 
 #l5  = INFO.readline()
 #V0  = float(l5.split()[-2])
@@ -508,7 +508,7 @@ for i in range(1, NoD+1):
 
         #--- Plotting -----------------------------------------------------------------------------
         # if (os.path.exists('Grace.par') == False):
-        #     os.system("cp -f $ElaSticROOT/Grace.par .")
+        #     os.system("cp -f $FPTEROOT/Grace.par .")
         #
         # Gf    = open('Grace.par', 'r')
         # Glines= Gf.readlines()
@@ -561,11 +561,11 @@ for i in range(1, NoD+1):
 
 os.chdir('../')
 
-#--- Writing the "ElaStic_???.in" file ------------------------------------------------------------
+#--- Writing the "FPTE_???.in" file ------------------------------------------------------------
 
 if (ordr == 2):
     orth  = '2nd'
-    fri = open('ElaStic_' + orth + '.in', 'w')
+    fri = open('FPTE_' + orth + '.in', 'w')
     for i in range(1, NoD + 1):
         if (i < 10):
             Dstn = 'Deform0' + str(i)

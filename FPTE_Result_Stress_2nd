@@ -1,6 +1,6 @@
 #!/usr/bin/env python 
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
-#%!%!% ----------------------------- ElaStic_Result_Stress_2nd ----------------------------- %!%!%#
+#%!%!% ----------------------------- FPTE_Result_Stress_2nd ----------------------------- %!%!%#
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
 #
 # AUTHORs:
@@ -14,8 +14,8 @@
 # July 01 00:00:00 2018
 #
 # SYNTAX:
-# python ElaStic_Result_Stress_2nd.py
-#        ElaStic_Result_Stress_2nd
+# python FPTE_Result_Stress_2nd.py
+#        FPTE_Result_Stress_2nd
 #
 # EXPLANATION:
 #
@@ -124,29 +124,29 @@ head = {\
                C16     C26     C36     C46      C56    C66                 \n'}
 #--------------------------------------------------------------------------------------------------
 
-#%!%!%--- Reading the "INFO_ElaStic" file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
-INFO=open('INFO_ElaStic', 'r')
+#%!%!%--- Reading the "INFO_FPTE" file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
+INFO=open('INFO_FPTE', 'r')
 
 l1  = INFO.readline()
 ordr= int(l1.split()[-1])
 
 if (ordr != 2 and ordr != 3):
     sys.exit('\n.... Oops ERROR: The order of the elastic constant is NOT clear !?!?!?'\
-             '\n                 Something is WRONG in the "INFO_ElaStic" file.\n')
+             '\n                 Something is WRONG in the "INFO_FPTE" file.\n')
 
 l2  = INFO.readline()
 mthd= l2.split()[-1]
 
 if (mthd != 'Stress' and mthd != 'Energy'):
     sys.exit('\n.... Oops ERROR: The method of the calculation is NOT clear !?!?!?'\
-             '\n                 Something is WRONG in the "INFO_ElaStic" file.\n')
+             '\n                 Something is WRONG in the "INFO_FPTE" file.\n')
 
 l3  = INFO.readline()
 cod = l3.split()[-1]
 
 if (cod != 'WIEN2k' and cod != 'exciting' and cod != 'ESPRESSO' and cod != 'VASP'):
     sys.exit('\n.... Oops ERROR: The DFT code is NOT clear !?!?!?'\
-             '\n                 Something is WRONG in the "INFO_ElaStic" file.\n')
+             '\n                 Something is WRONG in the "INFO_FPTE" file.\n')
 
 
 #l5  = INFO.readline()
@@ -391,13 +391,13 @@ if (LC == 'N'):
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
 #%!%!% ------------ Calculating the second derivative and Cross-Validation Error ----------- %!%!%#
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
-OBJ = open('ElaStic_2nd.in', 'r')
+OBJ = open('FPTE_2nd.in', 'r')
 
 # RoD = Range of Deformation
 RoD = OBJ.read().strip().split()
 
 if (len(RoD) != 13*NoD):
-    sys.exit('\n.... Oops ERROR: Something is WRONG in the "ElaStic_2nd.in" file !?!?!?\n')
+    sys.exit('\n.... Oops ERROR: Something is WRONG in the "FPTE_2nd.in" file !?!?!?\n')
 
 os.chdir('Stress-vs-Strain')
 
@@ -525,7 +525,7 @@ for i in range(1, NoD+1):
 
 #%%%--- Calculating the elastic constant and writing the output file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%
 if (len(sigma) != 6*NoD):
-    sys.exit('\n.... Oops ERROR: Something is WRONG in the "ElaStic_2nd.in" file !?!?!?\n')
+    sys.exit('\n.... Oops ERROR: Something is WRONG in the "FPTE_2nd.in" file !?!?!?\n')
 
 sigma = np.array(sigma)
 ci    = linalg.lstsq(Matrix,sigma)
@@ -702,8 +702,8 @@ AVR= 100.*(GV-GR)/(GV+GR)
 #--------------------------------------------------------------------------------------------------
 
 #%%%--- Writing the output file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
-fo = open('ElaStic_2nd.out', 'w')
-print >>fo,  '    The output of ElaStic code                                              \n'\
+fo = open('FPTE_2nd.out', 'w')
+print >>fo,  '    The output of FPTE code                                              \n'\
              '    Today is '+ time.asctime() +                                           '\n'\
                                                                                          '\n'\
              '    Symmetry of the second-order elastic constant matrix in Voigt notation. \n'\
@@ -763,4 +763,4 @@ print >>fo,'\n    ... Have a G00D Day, Week, Month, Year, and Century (if you ar
 fo.close()
 #--------------------------------------------------------------------------------------------------
 os.chdir('../')
-os.system('cp -f Stress-vs-Strain/ElaStic_2nd.out .')
+os.system('cp -f Stress-vs-Strain/FPTE_2nd.out .')

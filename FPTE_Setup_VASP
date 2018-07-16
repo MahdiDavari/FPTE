@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
-#%!%!% ------------------------------ ElaStic_Setup_VASP---- ------------------------------- %!%!%#
+#%!%!% ------------------------------ FPTE_Setup_VASP---- ------------------------------- %!%!%#
 #%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%#
 #
 # AUTHORs:
@@ -14,8 +14,8 @@
 # July 01 00:00:00 2018
 #
 # SYNTAX:
-# python ElaStic_Setup_VASP.py
-#        ElaStic_Setup_VASP
+# python FPTE_Setup_VASP.py
+#        FPTE_Setup_VASP
 #
 # EXPLANATION:
 #
@@ -186,9 +186,9 @@ else:
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%--- Checking the input file exist ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
-if (os.path.exists('ElaStic_PW.in')):
-    print '\n.... Oops NOTICE: ElaStic found "ElaStic_PW.in". It will be used as input file.'
-    INF = 'ElaStic_PW.in'
+if (os.path.exists('FPTE_PW.in')):
+    print '\n.... Oops NOTICE: FPTE found "FPTE_PW.in". It will be used as input file.'
+    INF = 'FPTE_PW.in'
 else:
     # INF = raw_input('\n>>>> Please enter the name of structure file: (defualt POSCAR) ')
     INF = 'POSCAR'
@@ -412,10 +412,10 @@ if (mdr/ptn <= interval):
            '\n                 or a less number of distorted structures.\n')
 #--------------------------------------------------------------------------------------------------
 
-#%!%!%--- Writing the "INFO_ElaStic" file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
+#%!%!%--- Writing the "INFO_FPTE" file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
 # D   = np.linalg.det(CP)
 # V0  = abs(celldm1**3*D)
-INFO= open('INFO_ElaStic','w')
+INFO= open('INFO_FPTE','w')
 print >>INFO, 'Order of elastic constants      =', ordr           ,\
             '\nMethod of calculation           =', mthd           ,\
             '\nDFT code name                   = VASP   ',\
