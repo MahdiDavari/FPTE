@@ -33,6 +33,20 @@ import math
 import sys
 import os
 
+###------ CHECKING THE INPUT FILES ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
+if (os.path.exists('INCAR')):
+    molecular_dynamics = False
+    with open('INCAR') as file:
+        for line in file:
+            line = line.replace('=', ' = ')
+            AIMD = re.findall(r'IBRION', line)
+            if AIMD:
+                line = line.strip().split(' ')[-1]
+                if (int(line) == 0):
+                    molecular_dynamics = True
+    file.close()
+
+
 #%!%!%--- SUBROUTINS AND FUNCTIONS ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
 def sortlist(lst1, lst2):
     temp = copy.copy(lst1)
@@ -256,46 +270,15 @@ for i in Lag_strain_list:
             #--- Reading the physical stresses from the output files ------------------------------
             sig = zeros((3,3))
 
-            if (cod == 'WIEN2k'):
-                sys.exit('\n.... Oops SORRY: Not implemented yet !\n')
-
-            if (cod == 'exciting'):
-                sys.exit('\n.... Oops SORRY: Not implemented yet !\n')
-
-            if (cod == 'ESPRESSO'): 
-                if (os.path.exists('OUTCAR')):
-                    os.system("grep  'in kB' OUTCAR  | tail -n 1 >"+ Dstn_num +"-stress.dat")
-
-                    if (os.path.getsize(Dstn_num+'-stress.dat')!=0):
-                        fstres = open(  Dstn_num+'-stress.dat','r')
-
-                        l1 = fstres.readline()
-###### fix this part to read the P initial 
-                        sig[0,0] = str(float(l1.split()[-6])-1200)
-                        sig[0,1] = l1.split()[-3]
-                        sig[0,2] = l1.split()[-1]
-
-                        sig[1,0] = l1.split()[-3]
-                        sig[1,1] = str(float(l1.split()[-5])-1200)
-                        sig[1,2] = l1.split()[-2]
-                                    
-                        sig[2,0] = l1.split()[-1]
-                        sig[2,1] = l1.split()[-2]
-                        sig[2,2] = str(float(l1.split()[-4])-1200)
-
-                        fstres.close()
-                    else: 
-                        print '\n.... Oops WARNING: No Stresses in "'+ \
-                              Dstn_num +'.out" file !?!?!?\n'
-
-                else: 
-                    print '\n.... Oops WARNING: Where is the "'+ \
-                           Dstn_num +'.out" file !?!?!?\n'
-
 
             if (cod == 'VASP'):
                 if (os.path.exists('OUTCAR')):
-                    os.system("grep -A 1 'in kB' OUTCAR  | tail -n 2 >"+ Dstn_num +"-stress.dat")
+                    if molecular_dynamics:
+                        os.system('cp ../../FPTE_Ensemble_Average_AIMD ./')
+                        os.system("./FPTE_Ensemble_Average_AIMD -exclude 1000 > " + Dstn_num + "-stress.dat")
+                        os.system('rm -f ./FPTE_Ensemble_Average_AIMD')
+                    else:
+                        os.system("grep -A 1 'in kB' OUTCAR  | tail -n 2 >"+ Dstn_num +"-stress.dat")
 
                     if (os.path.getsize(Dstn_num+'-stress.dat')!=0):
                         fstres = open(  Dstn_num+'-stress.dat','r')
