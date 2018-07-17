@@ -1,7 +1,36 @@
 #!/usr/local/bin/python3.3
 
 import os
+import numpy as np
+import argparse
 import sys
+
+''' 
+This file discards the initial ionic steps in order to reach equilibration.
+It is recommended to discard at least 1 ps - the default is 1000 steps.
+
+'''
+
+__author__  =   "Mahdi Davari"
+__version__ =   "1.0.0"
+__email__   =   "Mahdi.Davari@StonyBrook.edu"
+__date__    =   "June 20, 2018"
+
+
+parser = argparse.ArgumentParser(description='''
+Lattice strain function |
+Author: Mahdi Davari |
+Last updated: June, 2018''')
+
+
+parser.add_argument('-exclude', metavar='number', type=str, nargs=1,
+                    help='In the Ab Initio MD, one need to exclude at least 1 ps of the ionic steps, the default is 1000 steps (1fs)')
+
+args = parser.parse_args()
+if args.exclude:
+    exc_steps = int(args.exclude[0])
+else:
+    exc_steps = 1000
 
 
 if (os.path.exists('OSZICAR') == False or os.path.exists('OUTCAR') == False):
@@ -16,16 +45,11 @@ with open('tmp_file') as f:
     tot = int(tot)
     f.close()
 
-num_discard = input(
-    '\n >>>> How many initial ionic steps need to be discarded in order to reach equilibration? \ '
-    '\n >>>> (it is recommended to discard 1 ps at least - the default is 1000 steps): ')
-if (int(num_discard) > tot or int(num_discard) < 0):
+equilibrated = tot - exc_steps
+if exc_steps > tot or exc_steps < 0):
     sys.exit("\n.... Oops ERROR - your discarded part is higher than the total ionic steps:  \n")
-if num_discard == '':
-    num_discard = 1000
 
-equilibrated = tot - int(num_discard)
-
+#print('>>>>>> Your ensemble average is for '+ str(equilibrated) + ' ionic steps')
 os.system("grep -A 1 'in kB' OUTCAR | tail -"+str(3*equilibrated)+"  > tmp_sig")
 
 for i in range(6):
@@ -46,15 +70,6 @@ with open('tmp_file') as f:
     ext_p= float(f.readline())
     pullay_s= float(f.readline())
 
-
-#    print('SigXX %10.3f' % sig1)
-#    print('SigYY %10.3f' % sig2)
-#    print('SigZZ %10.3f' % sig3)
-#    print('SigXY %10.3f' % sig4)
-#    print('SigYZ %10.3f' % sig5)
-#    print('SigZX %10.3f' % sig6)
-#    print('external pressure %10.3f' %ext_p)
-#    print('Pullay Stress %10.3f' %pullay_s)
     print(' in kB    ', str(sig1), str(sig2), str(sig3), str(sig4), str(sig5), str(sig6), sep="    ")
     print('  external pressure =      ', ext_p,' kB  Pullay stress =     ', pullay_s, ' kB')
     print('  ')
