@@ -46,7 +46,7 @@ with open('tmp_file') as f:
     f.close()
 
 equilibrated = tot - exc_steps
-if exc_steps > tot or exc_steps < 0):
+if (exc_steps > tot or exc_steps < 0):
     sys.exit("\n.... Oops ERROR - your discarded part is higher than the total ionic steps:  \n")
 
 #print('>>>>>> Your ensemble average is for '+ str(equilibrated) + ' ionic steps')

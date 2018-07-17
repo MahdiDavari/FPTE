@@ -28,6 +28,7 @@ import subprocess
 import warnings
 import os.path
 import shutil
+import re
 import copy
 import math
 import sys
@@ -44,6 +45,7 @@ if (os.path.exists('INCAR')):
                 line = line.strip().split(' ')[-1]
                 if (int(line) == 0):
                     molecular_dynamics = True
+                    print('Please be patient! This may take a few minutes')
     file.close()
 
 
