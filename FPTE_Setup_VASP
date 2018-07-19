@@ -210,20 +210,21 @@ def new_lattice(deformation, old_lattice):
 
 if (os.path.exists('INCAR')):
     molecular_dynamics = False
+    ISIF_value = []
     with open('INCAR') as file:
         for line in file:
             line = line.replace('=', ' = ')
             ISIF_p = re.findall(r'ISIF', line)
             AIMD = re.findall(r'IBRION', line)
             if (ISIF_p and ISIF_p != -1):
-                line = line.strip().split(' ')[-1]
-                if (int(line) != 2):
+                ISIF_value = line.strip().split(' ')[-1]
+                if (int(ISIF_value) != 2):
                     sys.exit('\n Ooops ISIF = 3 can not be used for elastic constant calculations \n')
             if AIMD:
                 line = line.strip().split(' ')[-1]
                 if (int(line) == 0):
                     molecular_dynamics = True
-        if ISIF_p == []:
+        if len(ISIF_value) == 0:
             sys.exit('\n Ooops ISIF is missing \n')
     file.close()
 
