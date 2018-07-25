@@ -225,7 +225,7 @@ if (os.path.exists('INCAR')):
                 line = line.strip().split(' ')[-1]
                 if (int(line) == 0):
                     molecular_dynamics = True
-            if ISYM_p:
+            if (ISYM_p and ISYM_p != -1):
                 line = line.strip().split(' ')[-1]
                 if (int(line) != 0):
                     sys.exit('\n It is recommended to use ISYM = 0 \n')
