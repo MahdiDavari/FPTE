@@ -163,44 +163,24 @@ ibravDic = {            \
 '14':'Triclinic'}
 #--------------------------------------------------------------------------------------------------
 
-#%!%!%--- Reading the method of the elastic constants calculations ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
-print '\n     Energy  ---=>  1    \
-       \n     Stress  ---=>  2    '
-num = input('>>>> Please choose the method of the calculation (choose 1 or 2): ')
-if (num != 1 and num != 2):
-    sys.exit("\n.... Oops ERROR: Choose '1' or '2' \n")
-if (num == 1 ): mthd = 'Energy'
-if (num == 2 ): mthd = 'Stress'
-#--------------------------------------------------------------------------------------------------
+print '\n     This implemetation uses stress-starin metod to calculate second order elastic constants   \'
 
-#%!%!%--- Reading the order of the elastic constants ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
-if (num == 1):
-    print '\n     2nd  ---=>  2    \
-           \n     3rd  ---=>  3    '
-    ordr = input('>>>> Please choose the order of the elastic constant (choose 2 or 3): ')
-    if (ordr != 2 and ordr != 3 ):
-        sys.exit("\n.... Oops ERROR: Choose '2' or '3' \n")
-else:
-    ordr = 2
+num = 2 
+mthd = 'Stress'
+ordr = 2
 
 #--------------------------------------------------------------------------------------------------
 
 #%!%!%--- Checking the input file exist ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!
-if (os.path.exists('FPTE_PW.in')):
-    print '\n.... Oops NOTICE: FPTE found "FPTE_PW.in". It will be used as input file.'
-    INF = 'FPTE_PW.in'
-else:
-    # INF = raw_input('\n>>>> Please enter the name of structure file: (defualt POSCAR) ')
+if (os.path.exists('POSCAR')):
+    print '\n.... Oops NOTICE: FPTE found "POSCAR". It will be used as input structure file to make strained structures.'
     INF = 'POSCAR'
+else:
+    INF = raw_input('\n>>>> Please enter the name of structure file: (e.g. POSCAR) ')
     if (os.path.exists(INF) == False):
         sys.exit('\n.... Oops ERROR: There is NO '+ INF +' file !?!?!?    \n')
-fi = open(INF, 'r')
-EIF = fi.read()
-fi.close()
 
 #--------------------------------------------------------------------------------------------------
-
-#%!%!%--- Writing the "sgroup.in" file ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
 def new_lattice(deformation, old_lattice):
     """this function converts the lattice to distorted lattices"""
     new_lat = np.zeros(shape=(3, 3))
@@ -208,6 +188,7 @@ def new_lattice(deformation, old_lattice):
         new_lat[i] = np.dot(deformation, old_lattice[i])
     return new_lat
 
+#%!%!%--- Checking the "INPUT" files ---%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%!%
 if (os.path.exists('INCAR')):
     molecular_dynamics = False
     ISIF_value = []
@@ -234,8 +215,7 @@ if (os.path.exists('INCAR')):
     file.close()
 
 
-files_name='POSCAR'
-with open(files_name, 'r') as f:
+with open(INF, 'r') as f:
     texx_file = f.readlines()
     first_line = texx_file[0].strip(' ')
     scale=float(texx_file[1])
@@ -250,7 +230,6 @@ with open(files_name, 'r') as f:
         print('check your POSCAR')
     positions = np.array([[float(i) for i in line.split()] for line in texx_file[8:8+sum(natoms)]])
     f.close()
-
 
 
 
