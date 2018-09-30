@@ -163,7 +163,7 @@ ibravDic = {            \
 '14':'Triclinic'}
 #--------------------------------------------------------------------------------------------------
 
-print '\n     This implemetation uses stress-starin metod to calculate second order elastic constants   \'
+print '\n     This implemetation uses stress-starin metod to calculate second order elastic constants  '
 
 num = 2 
 mthd = 'Stress'
