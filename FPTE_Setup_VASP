@@ -165,7 +165,7 @@ ibravDic = {            \
 
 print '\n     This implemetation uses stress-starin metod to calculate second order elastic constants  '
 
-num = 2 
+num = 2
 mthd = 'Stress'
 ordr = 2
 order = 'second'
@@ -222,8 +222,8 @@ with open(INF, 'r') as f:
     first_line = texx_file[0].strip(' ')
     scale=float(texx_file[1])
     lattice= np.array([[float(item) for item in line.split()] for line in texx_file[2:5]])
-    species = texx_file[5].split(' ')
-    species_num = texx_file[6].split(' ')
+    species = texx_file[5].strip().split()
+    species_num = texx_file[6].strip().split()
     coordinate_type = texx_file[7] ## will fix it later! right now only works for "Direct"
     try:
         symbols = texx_file[5].split()
@@ -400,7 +400,7 @@ print >>INFO, 'Order of elastic constants      =', ordr           ,\
             '\nDFT code name                   = VASP   ',\
             '\nMaximum Lagrangian strain       =', mdr            ,\
             '\nNumber of distorted structures  =', NoP            ,\
-            '\nSpace-group number              =', SGN            
+            '\nSpace-group number              =', SGN
 
 # '\nVolume of equilibrium unit cell =', V0, '[a.u^3]'  ,\
 INFO.close()
@@ -535,13 +535,13 @@ for i in Lag_strain_list:
 
         new_latt_conv= new_lattice(def_matrix, lattice)
         with open('POSCAR', 'w') as f:
-            f.write(str(first_line))
+            f.write('this structure has been generated with applied strains'+'\n')
             f.write(str(scale)+'\n')
-            f.write('%40s' % ('\n'.join(' '.join(str(cell) for cell in row) for row in new_latt_conv)+'\n'))
-            f.write(' '.join(str(symbols) for symbols in species))#+'\n')
-            f.write(' '.join(str(atom_num) for atom_num in species_num))#+'\n')
+            f.write('\n'.join('   '.join("%.10f" % cell for cell in row) for row in new_latt_conv)+'\n')
+            f.write('  '.join("%4s" % symbols for symbols in species)+'\n')
+            f.write('  '.join("%4s" % atom_num for atom_num in species_num)+'\n')
             f.write(coordinate_type)
-            f.write('\n'.join(' '.join(str(coor) for coor in line) for line in positions))
+            f.write('\n'.join('  '.join("%.10f" % coor for coor in line) for line in positions))
         f.close()
         ####
         if (os.path.exists('../../INCAR') == False or os.path.exists('../../POTCAR') == False):
