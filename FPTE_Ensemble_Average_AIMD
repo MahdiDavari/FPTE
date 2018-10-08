@@ -1,11 +1,11 @@
-#!/usr/local/bin/python3.3
+#!/usr/bin/env python
 
 import os
 import numpy as np
 import argparse
 import sys
 
-''' 
+'''
 This file discards the initial ionic steps in order to reach equilibration.
 It is recommended to discard at least 1 ps - the default is 1000 steps.
 
@@ -70,8 +70,8 @@ with open('tmp_file') as f:
     ext_p= float(f.readline())
     pullay_s= float(f.readline())
 
-    print(' in kB    ', str(sig1), str(sig2), str(sig3), str(sig4), str(sig5), str(sig6), sep="    ")
-    print('  external pressure =      ', ext_p,' kB  Pullay stress =     ', pullay_s, ' kB')
+    print(' in kB   %8.3f   %8.3f  %8.3f   %8.3f   %8.3f   %8.3f'  % (sig1, sig2, sig3, sig4, sig5, sig6))
+    print('  external pressure =    %8.3f  '% ext_p+' kB  Pullay stress =   %8.2f  '% pullay_s+ ' kB')
     print('  ')
     f.close()
 
