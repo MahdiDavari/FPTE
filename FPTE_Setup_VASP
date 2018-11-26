@@ -220,19 +220,23 @@ if (os.path.exists('INCAR')):
 with open(INF, 'r') as f:
     texx_file = f.readlines()
     first_line = texx_file[0].strip(' ')
-    scale=float(texx_file[1])
-    lattice= np.array([[float(item) for item in line.split()] for line in texx_file[2:5]])
-    species = texx_file[5].strip().split()
-    species_num = texx_file[6].strip().split()
-    coordinate_type = texx_file[7] ## will fix it later! right now only works for "Direct"
-    try:
-        symbols = texx_file[5].split()
-        natoms = [int(i) for i in texx_file[6].split()]
-    except ValueError:
-        print('check your POSCAR')
-    positions = np.array([[float(i) for i in line.split()] for line in texx_file[8:8+sum(natoms)]])
-    f.close()
+    scale = float(texx_file[1])
+    lattice = np.array([[float(item) for item in line.split()] for line in texx_file[2:5]])
+    lattice *= scale
 
+    vasp5_symbols = False
+    try:
+        species_num = [int(i) for i in texx_file[5].strip().split()]
+        ipos = 6
+    except ValueError:
+        vasp5_symbols = True
+        species = texx_file[5].strip().split()
+        species_num = [int(i) for i in texx_file[6].strip().split()]
+        ipos = 7
+
+    coordinate_type = texx_file[ipos]  ## will fix it later! right now only works for "Direct"
+    positions = np.array([[float(i) for i in line.split()] for line in texx_file[ipos + 1 : ipos + 1 + sum(species_num)]])
+f.close()
 
 
 #
@@ -538,7 +542,8 @@ for i in Lag_strain_list:
             f.write('this structure has been generated with applied strains'+'\n')
             f.write(str(scale)+'\n')
             f.write('\n'.join('   '.join("%.10f" % cell for cell in row) for row in new_latt_conv)+'\n')
-            f.write('  '.join("%4s" % symbols for symbols in species)+'\n')
+            if vasp5_symbols:
+                f.write('  '.join("%4s" % symbols for symbols in species)+'\n')
             f.write('  '.join("%4s" % atom_num for atom_num in species_num)+'\n')
             f.write(coordinate_type)
             f.write('\n'.join('  '.join("%.10f" % coor for coor in line) for line in positions))
