@@ -2,6 +2,8 @@
 import sys, os
 import numpy as np
 import pandas as pd
+from matplotlib import pyplot as plt
+
 
 def main():
  
@@ -41,6 +43,9 @@ def main():
     print('The Minimum RMSD is: {:2.2}'.format(min(rmsd_list)))
     print('Total number of Structures {:1}'.format(len(rmsd_list)))
     print('Total number of atoms {:1}'.format(total_atoms))
+    plt.plot(rmsd_list)
+    plt.savefig('RMSD.pdf', format='pdf', dpi=600)
+    plt.show()
     
 if __name__ == '__main__':
     main()
