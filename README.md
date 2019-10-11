@@ -1,5 +1,5 @@
 # Finite Pressure Temperature Elasticity (FPTE) package. 
-
+<a href="https://ibb.co/gJpS7Js"><img src="https://i.ibb.co/VTZgNTX/Stress-Strain.jpg" alt="Stress-Strain" border="0" /></a>
 
 **Elastic Stifness Coefficients from Stress-Strain Relations:**
 
