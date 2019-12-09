@@ -1,0 +1,12 @@
+cat /dev/null                
+ #!/bin/sh"                   
+ # BSUB -sp 100               
+ # BSUB -q  intel             
+ # BSUB -a  intelmpi          
+ # BSUB -o  output            
+ # BSUB -R  8                 
+ # BSUB -W  1000:00           
+ # BSUB -n  8                 
+ # BSUB -J  FPTEDeform02_02
+mpirun.lsf vasp-vdw > log    
+ 

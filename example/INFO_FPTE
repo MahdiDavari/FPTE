@@ -1,0 +1,6 @@
+Order of elastic constants      = 2 
+Method of calculation           = Stress 
+DFT code name                   = VASP    
+Maximum Lagrangian strain       = 0.005 
+Number of distorted structures  = 3 
+Space-group number              = 65
