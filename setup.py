@@ -6,7 +6,6 @@ from os.path import join
 from os.path import splitext
 
 
-
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
@@ -22,7 +21,6 @@ setuptools.setup(
      url="https://github.com/MahdiDavari/FPTE",
      packages=setuptools.find_packages(where='src'),
      package_dir={'': 'src'},
-#     py_modules=[splitext(basename(path))[0] for path in glob('src/FPTE/*.py')],
      include_package_data=True,
      install_requires=['matplotlib', 'numpy', 'pandas'],
 
