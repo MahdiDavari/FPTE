@@ -14,8 +14,7 @@ from FPTE.FPTE_Result_Stress_2nd import fpte_results
 from FPTE.FPTE_Setup_VASP import fpte_setup 
 from FPTE.FPTE_clean import fpte_clean 
 from FPTE.FPTE_Analyze_Stress import fpte_analyze 
-
-  # FPTE_RMSD,
+from FPTE.FPTE_RMSD import fpte_rmsd
 from FPTE import __version__
 
 
@@ -52,7 +51,11 @@ def main():
     parser.add_argument("-c", "--clean", 
                 action='store_true', dest='clean', default=False,
                 help="this cleans the calculation folder and makes it ready to re-submit the job.")
-                
+    
+    parser.add_argument("-e", "--rmsd", 
+            action='store_true', dest='rmsd', default=False,
+            help="this tool calculates and plots the root mean square displacement in the AIMD runs.")
+            
 
     try:
         import argcomplete
@@ -77,6 +80,8 @@ def main():
         fpte_setup()
     elif args.clean:
         fpte_clean()
+    elif args.rmsd:
+        fpte_rmsd()
 
 
 if __name__ == "__main__":

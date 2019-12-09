@@ -5,7 +5,7 @@ import pandas as pd
 from matplotlib import pyplot as plt
 
 
-def main():
+def fpte_rmsd():
  
     if (not os.path.exists('CONTCAR')) or (not os.path.exists('OUTCAR')) or (not os.path.exists('OSZICAR')):
         sys.exit('\n.... Oops ERROR: There is NO CONTCAR, OUTCAR or OSZICAR file !?!?!?    \n')
@@ -48,4 +48,4 @@ def main():
     plt.show()
     
 if __name__ == '__main__':
-    main()
+    fpte_rmsd()
