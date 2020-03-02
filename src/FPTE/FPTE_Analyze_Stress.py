@@ -466,7 +466,7 @@ def fpte_analyze():
                     if (ordr == 3):
                         Cij = coeffs[j-2] * CONV * 0.001 # in TPa unit
 
-                    fD.write('%13.10f'%emax, '%18.6f'%Cij)
+                    fD.write('%13.10f'%emax + ' ' + '%18.6f'%Cij)
                     if (abs(strain[0]+emax) < 1.e-7):
                         strain.pop(0)
                         stress.pop(0)
@@ -495,7 +495,7 @@ def fpte_analyze():
                         S = S + (Yfit-Y)**2
 
                     CV = np.sqrt(S/len(strain))
-                    fE.write( '%13.10f'%emax, CV)
+                    fE.write( '%13.10f'%emax+ ' '+ '%13.10f'%CV)
 
                     if (abs(strain[0]+emax) < 1.e-7):
                         strain.pop(0)
