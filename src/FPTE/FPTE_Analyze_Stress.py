@@ -225,11 +225,11 @@ def fpte_analyze():
         flstres = open(Dstn+'_Lagrangian-stress.dat', 'w')
         fpstres = open(Dstn+  '_Physical-stress.dat', 'w')
 
-        flstres.write(' Lagrangian strain and Lagrangian stresses (LS) in Voigt notation for '+ Dstn +'.')
-        l=' Lag. strain          LS1              LS2              LS3              LS4              LS5              LS6 '
+        flstres.write(' Lagrangian strain and Lagrangian stresses (LS) in Voigt notation for '+ Dstn +'. \n')
+        l=' Lag. strain          LS1              LS2              LS3              LS4              LS5              LS6 \n'
         flstres.write(l) 
-        fpstres.write(' Lagrangian strain and physical stresses (PS) in Voigt notation for '+ Dstn +'.')
-        fpstres.write(' Lag. strain         PS1          PS2          PS3          PS4          PS5          PS6 ')
+        fpstres.write(' Lagrangian strain and physical stresses (PS) in Voigt notation for '+ Dstn +'. \n')
+        fpstres.write(' Lag. strain         PS1          PS2          PS3          PS4          PS5          PS6  \n')
 
         for j in range(1, NoP+1):
             if (j<10):
@@ -345,14 +345,14 @@ def fpte_analyze():
                                         +'   '+'%10.3f'%sig[2,2]\
                                         +'   '+'%10.3f'%sig[1,2]\
                                         +'   '+'%10.3f'%sig[0,2]\
-                                        +'   '+'%10.3f'%sig[0,1])
+                                        +'   '+'%10.3f'%sig[0,1]+'\n')
 
                 flstres.write(strain +'   '+'%14.8f'%tao[0,0]\
                                         +'   '+'%14.8f'%tao[1,1]\
                                         +'   '+'%14.8f'%tao[2,2]\
                                         +'   '+'%14.8f'%tao[1,2]\
                                         +'   '+'%14.8f'%tao[0,2]\
-                                        +'   '+'%14.8f'%tao[0,1])
+                                        +'   '+'%14.8f'%tao[0,1]+'\n')
                 os.chdir('../')
         flstres.close()
         fpstres.close()
