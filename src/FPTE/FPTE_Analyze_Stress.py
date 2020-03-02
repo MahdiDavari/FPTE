@@ -32,6 +32,8 @@ import copy
 import math
 import sys
 import os
+from FPTE.FPTE_Ensemble_Average_AIMD import fpte_ensemle_average_aimd
+
 
 
 def fpte_analyze():
@@ -200,6 +202,13 @@ def fpte_analyze():
                 sys.exit('\n.... Oops SORRY: Not implemented yet. \n')
 
     cont1= 0
+    if molecular_dynamics:
+        exclude_steps = input('\n>>>> In the ab initio MD, you need to exclude at least 1 ps of the ionic steps, \n'+
+                                                     '>>>> the default is 1500 steps (each step = 1fs). \n' +
+                                                     ' \n'+
+                                                     '>>>>Please press ENTER to confirm or specify a different value: ')
+
+
     for i in Lag_strain_list:
         Ls_list= Ls_Dic[i]
 
@@ -216,11 +225,11 @@ def fpte_analyze():
         flstres = open(Dstn+'_Lagrangian-stress.dat', 'w')
         fpstres = open(Dstn+  '_Physical-stress.dat', 'w')
 
-        print>>flstres, ' Lagrangian strain and Lagrangian stresses (LS) in Voigt notation for '+ Dstn +'.'
+        flstres.write(' Lagrangian strain and Lagrangian stresses (LS) in Voigt notation for '+ Dstn +'.')
         l=' Lag. strain          LS1              LS2              LS3              LS4              LS5              LS6 '
-        print>>flstres, l 
-        print>>fpstres, ' Lagrangian strain and physical stresses (PS) in Voigt notation for '+ Dstn +'.'
-        print>>fpstres, ' Lag. strain         PS1          PS2          PS3          PS4          PS5          PS6 '
+        flstres.write(l) 
+        fpstres.write(' Lagrangian strain and physical stresses (PS) in Voigt notation for '+ Dstn +'.')
+        fpstres.write(' Lag. strain         PS1          PS2          PS3          PS4          PS5          PS6 ')
 
         for j in range(1, NoP+1):
             if (j<10):
@@ -277,19 +286,31 @@ def fpte_analyze():
                 if (cod == 'VASP'):
                     if (os.path.exists('OUTCAR')):
                         if molecular_dynamics:
-                            os.system('cp ../../FPTE_Ensemble_Average_AIMD ./')
-                            os.system("./FPTE_Ensemble_Average_AIMD -exclude 1000 > " + Dstn_num + "-stress.dat")
-                            os.system('rm -f ./FPTE_Ensemble_Average_AIMD')
+                            sys.stdout = open(Dstn_num + "-stress.dat", "w")
+                            if exclude_steps:
+                                exclude_steps = int(exclude_steps)
+                                fpte_ensemle_average_aimd(exclude_steps)
+                            else: 
+                                fpte_ensemle_average_aimd()
+                            
+                            sys.stdout = open('/dev/stdout', 'w')
+
+                                #####work on these lines!!!!!!!!!!!!!!!!!!!!!!!!!
+        #                    os.system('cp ../../FPTE_Ensemble_Average_AIMD ./')
+                            # file_out = open(Dstn_num + "-stress.dat", "w")
+
+
+                            # os.system("FPTE_Ensemble_Average_AIMD -exclude 1500 > " + Dstn_num + "-stress.dat")
+        #                    os.system('rm -f ./FPTE_Ensemble_Average_AIMD')
                         else:
                             os.system("grep -A 1 'in kB' OUTCAR  | tail -n 2 >"+ Dstn_num +"-stress.dat")
 
                         if (os.path.getsize(Dstn_num+'-stress.dat')!=0):
-                            fstres = open(  Dstn_num+'-stress.dat','r')
-
-                            l1 = fstres.readline()
-                            l2 = fstres.readline()
+                            with open(Dstn_num+'-stress.dat','r') as fstres:
+                                l1 = fstres.readline()
+                                l2 = fstres.readline()
                             pullay_stree = l2.split()[-2]
-                            print('The external pressure is:', float(pullay_stree)/10.)
+                            print('The external pressure is '+str(float(pullay_stree)/10.))
                             sig[0,0] = str(float(l1.split()[-6])-float(pullay_stree))
                             sig[0,1] = l1.split()[-3]
                             sig[0,2] = l1.split()[-1]
@@ -302,7 +323,6 @@ def fpte_analyze():
                             sig[2,1] = l1.split()[-2]
                             sig[2,2] = str(float(l1.split()[-4])-float(pullay_stree))
 
-                            fstres.close()
                         else:
                             print('\n.... Oops WARNING: No Stresses in "'+ \
                                 Dstn_num +'.out" file !?!?!?\n')
@@ -320,19 +340,19 @@ def fpte_analyze():
                     strain = '+%12.10f'%r
                 else:
                     strain =  '%13.10f'%r
-                print >>fpstres, strain +'   '+'%10.3f'%sig[0,0]\
+                fpstres.write(strain +'   '+'%10.3f'%sig[0,0]\
                                         +'   '+'%10.3f'%sig[1,1]\
                                         +'   '+'%10.3f'%sig[2,2]\
                                         +'   '+'%10.3f'%sig[1,2]\
                                         +'   '+'%10.3f'%sig[0,2]\
-                                        +'   '+'%10.3f'%sig[0,1]
+                                        +'   '+'%10.3f'%sig[0,1])
 
-                print >>flstres, strain +'   '+'%14.8f'%tao[0,0]\
+                flstres.write(strain +'   '+'%14.8f'%tao[0,0]\
                                         +'   '+'%14.8f'%tao[1,1]\
                                         +'   '+'%14.8f'%tao[2,2]\
                                         +'   '+'%14.8f'%tao[1,2]\
                                         +'   '+'%14.8f'%tao[0,2]\
-                                        +'   '+'%14.8f'%tao[0,1]
+                                        +'   '+'%14.8f'%tao[0,1])
                 os.chdir('../')
         flstres.close()
         fpstres.close()
@@ -377,8 +397,8 @@ def fpte_analyze():
                 fD = open(Dstn+'_'+LSi_dic[l]+'_d2S.dat','w')
 
             fE = open(Dstn+'_'+LSi_dic[l]+'_CVe.dat','w')
-            print >> fD, '# Max. eta    SUM(Cij) \n#'
-            print >> fE, '# Max. eta    Cross-Validation error   \n#'
+            fD.write( '# Max. eta    SUM(Cij) \n#')
+            fE.write( '# Max. eta    Cross-Validation error   \n#')
 
             for j in range(ordr+3, ordr-2, -2):
                 if  (j == 2): nth = '2nd'
@@ -386,8 +406,8 @@ def fpte_analyze():
                 else:
                     nth = str(j) + 'th'
 
-                print >> fD, '\n# '+ nth +' order fit.'
-                print >> fE, '\n# '+ nth +' order fit.'
+                fD.write( '\n# '+ nth +' order fit.')
+                fE.write( '\n# '+ nth +' order fit.')
 
                 #--- Reading the input files ----------------------------------------------------------
                 nl    = 0
@@ -446,7 +466,7 @@ def fpte_analyze():
                     if (ordr == 3):
                         Cij = coeffs[j-2] * CONV * 0.001 # in TPa unit
 
-                    print >>fD, '%13.10f'%emax, '%18.6f'%Cij
+                    fD.write('%13.10f'%emax, '%18.6f'%Cij)
                     if (abs(strain[0]+emax) < 1.e-7):
                         strain.pop(0)
                         stress.pop(0)
@@ -475,7 +495,7 @@ def fpte_analyze():
                         S = S + (Yfit-Y)**2
 
                     CV = np.sqrt(S/len(strain))
-                    print >>fE, '%13.10f'%emax, CV
+                    fE.write( '%13.10f'%emax, CV)
 
                     if (abs(strain[0]+emax) < 1.e-7):
                         strain.pop(0)
@@ -552,8 +572,8 @@ def fpte_analyze():
             else:
                 Dstn = 'Deform' + str(i)
 
-            print >> fri, Dstn + '   ' + str(mdr) + '      ' + str(mdr) + '      ' + str(mdr) + '      ' + str(mdr) + '      ' + str(mdr) + '       ' + str(mdr) + '  \n' \
-                                                                    '       2             2            2             2             2             2       \n'
+            fri.write(Dstn + '   ' + str(mdr) + '      ' + str(mdr) + '      ' + str(mdr) + '      ' + str(mdr) + '      ' + str(mdr) + '       ' + str(mdr) + '  \n' \
+                                                                    '       2             2            2             2             2             2       \n')
         fri.close()
 
     if (ordr == 3):
