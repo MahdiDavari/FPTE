@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: FPTE
-Version: 1.1.0a2
+Version: 1.1.0a3
 Summary: The FPTE package is a collection of tools for finite pressure temperature elastic constants calculation. Features include, but are not limited to stress-strain method for getting second order elastic tensors using DFT package VASP as well as, ab initio molecular dynamic method for temperature dependent elastic constatns. The package is free and ...
 Home-page: https://github.com/MahdiDavari/FPTE
 Author: Mahdi Davari

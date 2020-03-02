@@ -11,7 +11,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
      name='FPTE',  
-     version='1.1.0a2',
+     version='1.1.0a3',
      scripts=['FPTE'] ,
      author="Mahdi Davari",
      author_email="Mahdi.Davari@icloud.com",
