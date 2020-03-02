@@ -41,41 +41,41 @@ def fpte_results():
                 C11     C12     C12      0       0       0                  \n\
                 C12     C11     C12      0       0       0                  \n\
                 C12     C12     C11      0       0       0                  \n\
-                    0       0       0      C44      0       0                  \n\
-                    0       0       0       0      C44      0                  \n\
-                    0       0       0       0       0      C44                 \n',\
+                 0       0       0      C44      0       0                  \n\
+                 0       0       0       0      C44      0                  \n\
+                 0       0       0       0       0      C44                 \n',\
     'CII':'\
         for, space group-number between 195 and 206, Cubic II structure.       \n\n\
                 C11     C12     C12      0       0       0                  \n\
                 C12     C11     C12      0       0       0                  \n\
                 C12     C12     C11      0       0       0                  \n\
-                    0       0       0      C44      0       0                  \n\
-                    0       0       0       0      C44      0                  \n\
-                    0       0       0       0       0      C44                 \n',\
+                 0       0       0      C44      0       0                  \n\
+                 0       0       0       0      C44      0                  \n\
+                 0       0       0       0       0      C44                 \n',\
     'HI':'\
         for, space group-number between 177 and 194, Hexagonal I structure.    \n\n\
                 C11     C12     C13      0       0       0                  \n\
                 C12     C11     C13      0       0       0                  \n\
                 C13     C13     C33      0       0       0                  \n\
-                    0       0       0      C44      0       0                  \n\
-                    0       0       0       0      C44      0                  \n\
-                    0       0       0       0       0   (C11-C12)/2            \n',\
+                 0       0       0      C44      0       0                  \n\
+                 0       0       0       0      C44      0                  \n\
+                 0       0       0       0       0   (C11-C12)/2            \n',\
     'HII':'\
         for, space group-number between 168 and 176, Hexagonal II structure.   \n\n\
                 C11     C12     C13      0       0       0                  \n\
                 C12     C11     C13      0       0       0                  \n\
                 C13     C13     C33      0       0       0                  \n\
-                    0       0       0      C44      0       0                  \n\
-                    0       0       0       0      C44      0                  \n\
-                    0       0       0       0       0   (C11-C12)/2            \n',\
+                 0       0       0      C44      0       0                  \n\
+                 0       0       0       0      C44      0                  \n\
+                 0       0       0       0       0   (C11-C12)/2            \n',\
     'RI':'\
         for, space group-number between 149 and 167, Rhombohedral I structure. \n\n\
                 C11     C12     C13     C14      0       0                  \n\
                 C12     C11     C13    -C14      0       0                  \n\
                 C13     C13     C33      0       0       0                  \n\
                 C14    -C14      0      C44      0       0                  \n\
-                    0       0       0       0      C44     C14                 \n\
-                    0       0       0       0      C14  (C11-C12)/2            \n',\
+                 0       0       0       0      C44     C14                 \n\
+                 0       0       0       0      C14  (C11-C12)/2            \n',\
     'RII':'\
         for, space group-number between 143 and 148, Rhombohedral II structure.\n\n\
                 C11     C12     C13     C14     C15      0                  \n\
@@ -83,38 +83,38 @@ def fpte_results():
                 C13     C13     C33      0       0       0                  \n\
                 C14    -C14      0      C44      0     -C15                 \n\
                 C15    -C15      0       0      C44     C14                 \n\
-                    0       0       0     -C15     C14  (C11-C12)/2            \n',\
+                 0       0       0     -C15     C14  (C11-C12)/2            \n',\
     'TI':'\
         for, space group-number between 89 and 142, Tetragonal I structure.    \n\n\
                 C11     C12     C13      0       0       0                  \n\
                 C12     C11     C13      0       0       0                  \n\
                 C13     C13     C33      0       0       0                  \n\
-                    0       0       0      C44      0       0                  \n\
-                    0       0       0       0      C44      0                  \n\
-                    0       0       0       0       0      C66                 \n',\
+                 0       0       0      C44      0       0                  \n\
+                 0       0       0       0      C44      0                  \n\
+                 0       0       0       0       0      C66                 \n',\
     'TII':'\
         for, space group-number between 75 and 88, Tetragonal II structure.    \n\n\
                 C11     C12     C13      0       0      C16                 \n\
                 C12     C11     C13      0       0     -C16                 \n\
                 C13     C13     C33      0       0       0                  \n\
-                    0       0       0      C44      0       0                  \n\
-                    0       0       0       0      C44      0                  \n\
+                 0       0       0      C44      0       0                  \n\
+                 0       0       0       0      C44      0                  \n\
                 C16    -C16      0       0       0      C66                 \n',\
     'O':'\
         for, space group-number between 16 and 74, Orthorhombic structure.     \n\n\
                 C11     C12     C13      0       0       0                  \n\
                 C12     C22     C23      0       0       0                  \n\
                 C13     C23     C33      0       0       0                  \n\
-                    0       0       0      C44      0       0                  \n\
-                    0       0       0       0      C55      0                  \n\
-                    0       0       0       0       0      C66                 \n',\
+                 0       0       0      C44      0       0                  \n\
+                 0       0       0       0      C55      0                  \n\
+                 0       0       0       0       0      C66                 \n',\
     'M':'\
         for, space group-number between 3 and 15, Monoclinic structure.        \n\n\
                 C11     C12     C13      0       0      C16                 \n\
                 C12     C22     C23      0       0      C26                 \n\
                 C13     C23     C33      0       0      C36                 \n\
-                    0       0       0      C44     C45      0                  \n\
-                    0       0       0      C45     C55      0                  \n\
+                 0       0       0      C44     C45      0                  \n\
+                 0       0       0      C45     C55      0                  \n\
                 C16     C26     C36      0       0      C66                 \n',\
     'N':'\
         for, space group-number between 1 and 2, Triclinic structure.          \n\n\
@@ -769,11 +769,9 @@ def fpte_results():
                 '    Elastic constant (stiffness) matrix in GPa:                             \n')
 
     for i in range(0,6):
-        print(      '')
-        for j in range(0,6):
-            print(      '%11.1f'%(C[i,j]))  
-        print( )
-
+        print('%13.3f'%C[i][0]+'%13.3f'%C[i][1]+'%13.3f'%C[i][2]+'%13.3f'%C[i][3]+'%13.3f'%C[i][4]+'%13.3f'%C[i][5])
+    print('\n')
+    print('For more information see the FPTE_2nd.out file.')
     #--------------------------------------------------------------------------------------------------
     os.chdir('../')
     os.system('cp -f Stress-vs-Strain/FPTE_2nd.out .')

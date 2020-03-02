@@ -60,7 +60,7 @@ def fpte_ensemle_average_aimd(exclude_steps = 1500):
 
 
     for i in range(6):
-        os.system("grep 'Total+kin' tmp_sig | awk 'BEGIN {sig=0.} {sig+=$"+str(i+3)+"} END {print sig/"+str(equilibrated)+"}' >> tmp_file")
+        os.system("grep 'Total+kin' tmp_sig | awk 'BEGIN {sig=0.} {sig+=$"+str(i+2)+"} END {print sig/"+str(equilibrated)+"}' >> tmp_file")
     os.system("grep 'Pullay' tmp_pullay | awk 'BEGIN {sig=0.} {sig+=$4} END {print sig/"+str(equilibrated)+"}' >> tmp_file")
     os.system("grep 'Pullay' tmp_pullay | awk 'BEGIN {sig=0.} {sig+=$9} END {print sig/"+str(equilibrated)+"}' >> tmp_file")
     os.system('rm -f tmp_sig')

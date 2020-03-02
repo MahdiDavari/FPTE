@@ -225,11 +225,11 @@ def fpte_analyze():
         flstres = open(Dstn+'_Lagrangian-stress.dat', 'w')
         fpstres = open(Dstn+  '_Physical-stress.dat', 'w')
 
-        flstres.write(' Lagrangian strain and Lagrangian stresses (LS) in Voigt notation for '+ Dstn +'.')
-        l=' Lag. strain          LS1              LS2              LS3              LS4              LS5              LS6 '
+        flstres.write(' Lagrangian strain and Lagrangian stresses (LS) in Voigt notation for '+ Dstn +'. \n')
+        l=' Lag. strain          LS1              LS2              LS3              LS4              LS5              LS6 \n'
         flstres.write(l) 
-        fpstres.write(' Lagrangian strain and physical stresses (PS) in Voigt notation for '+ Dstn +'.')
-        fpstres.write(' Lag. strain         PS1          PS2          PS3          PS4          PS5          PS6 ')
+        fpstres.write(' Lagrangian strain and physical stresses (PS) in Voigt notation for '+ Dstn +'. \n')
+        fpstres.write(' Lag. strain         PS1          PS2          PS3          PS4          PS5          PS6  \n')
 
         for j in range(1, NoP+1):
             if (j<10):
@@ -310,6 +310,8 @@ def fpte_analyze():
                                 l1 = fstres.readline()
                                 l2 = fstres.readline()
                             pullay_stree = l2.split()[-2]
+                            print(pullay_stree)
+                            print(l2)
                             print('The external pressure is '+str(float(pullay_stree)/10.))
                             sig[0,0] = str(float(l1.split()[-6])-float(pullay_stree))
                             sig[0,1] = l1.split()[-3]
@@ -345,14 +347,14 @@ def fpte_analyze():
                                         +'   '+'%10.3f'%sig[2,2]\
                                         +'   '+'%10.3f'%sig[1,2]\
                                         +'   '+'%10.3f'%sig[0,2]\
-                                        +'   '+'%10.3f'%sig[0,1])
+                                        +'   '+'%10.3f'%sig[0,1]+'\n')
 
                 flstres.write(strain +'   '+'%14.8f'%tao[0,0]\
                                         +'   '+'%14.8f'%tao[1,1]\
                                         +'   '+'%14.8f'%tao[2,2]\
                                         +'   '+'%14.8f'%tao[1,2]\
                                         +'   '+'%14.8f'%tao[0,2]\
-                                        +'   '+'%14.8f'%tao[0,1])
+                                        +'   '+'%14.8f'%tao[0,1]+'\n')
                 os.chdir('../')
         flstres.close()
         fpstres.close()
@@ -466,7 +468,7 @@ def fpte_analyze():
                     if (ordr == 3):
                         Cij = coeffs[j-2] * CONV * 0.001 # in TPa unit
 
-                    fD.write('%13.10f'%emax, '%18.6f'%Cij)
+                    fD.write('%13.10f'%emax + ' ' + '%18.6f'%Cij)
                     if (abs(strain[0]+emax) < 1.e-7):
                         strain.pop(0)
                         stress.pop(0)
@@ -495,7 +497,7 @@ def fpte_analyze():
                         S = S + (Yfit-Y)**2
 
                     CV = np.sqrt(S/len(strain))
-                    fE.write( '%13.10f'%emax, CV)
+                    fE.write( '%13.10f'%emax+ ' '+ '%13.10f'%CV)
 
                     if (abs(strain[0]+emax) < 1.e-7):
                         strain.pop(0)

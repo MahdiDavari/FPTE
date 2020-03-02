@@ -310,6 +310,8 @@ def fpte_analyze():
                                 l1 = fstres.readline()
                                 l2 = fstres.readline()
                             pullay_stree = l2.split()[-2]
+                            print(pullay_stree)
+                            print(l2)
                             print('The external pressure is '+str(float(pullay_stree)/10.))
                             sig[0,0] = str(float(l1.split()[-6])-float(pullay_stree))
                             sig[0,1] = l1.split()[-3]
