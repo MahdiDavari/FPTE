@@ -206,7 +206,7 @@ def fpte_analyze():
         exclude_steps = input('\n>>>> In the ab initio MD, you need to exclude at least 1 ps of the ionic steps, \n'+
                                                      '>>>> the default is 1500 steps (each step = 1fs). \n' +
                                                      ' \n'+
-                                                     '>>>>Please press ENTER to confirm or specify a different value: ')
+                                                     '>>>> Please press ENTER to confirm or specify a different value: ')
 
 
     for i in Lag_strain_list:
@@ -295,13 +295,6 @@ def fpte_analyze():
                             
                             sys.stdout = open('/dev/stdout', 'w')
 
-                                #####work on these lines!!!!!!!!!!!!!!!!!!!!!!!!!
-        #                    os.system('cp ../../FPTE_Ensemble_Average_AIMD ./')
-                            # file_out = open(Dstn_num + "-stress.dat", "w")
-
-
-                            # os.system("FPTE_Ensemble_Average_AIMD -exclude 1500 > " + Dstn_num + "-stress.dat")
-        #                    os.system('rm -f ./FPTE_Ensemble_Average_AIMD')
                         else:
                             os.system("grep -A 1 'in kB' OUTCAR  | tail -n 2 >"+ Dstn_num +"-stress.dat")
 
@@ -310,9 +303,8 @@ def fpte_analyze():
                                 l1 = fstres.readline()
                                 l2 = fstres.readline()
                             pullay_stree = l2.split()[-2]
-                            print(pullay_stree)
-                            print(l2)
-                            print('The external pressure is '+str(float(pullay_stree)/10.))
+                            external_pressure = l2.split()[-7]
+                            print('The external pressure is {0:.1f} kB, and the Pullay stress is {1:.1f} kB.'.format(float(external_pressure), float(pullay_stree)))
                             sig[0,0] = str(float(l1.split()[-6])-float(pullay_stree))
                             sig[0,1] = l1.split()[-3]
                             sig[0,2] = l1.split()[-1]
