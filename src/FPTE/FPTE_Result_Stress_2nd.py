@@ -726,29 +726,29 @@ def fpte_results():
 
     fo.write('\n'+ lineseparator +'\n')
 
-    fo.write('    Voigt bulk  modulus, B_V = {0}  GPa'.format('%8.2f'%(BV)))
+    fo.write('    Voigt bulk  modulus, B_V = {0}  GPa'.format('%8.2f'%(BV)) + '\n')
     fo.write('    Voigt shear modulus, G_V = {0}  GPa'.format('%8.2f'%(GV)) + '\n')
 
-    fo.write('    Reuss bulk  modulus, B_R = {0}  GPa'.format('%8.2f'%(BR)))
+    fo.write('    Reuss bulk  modulus, B_R = {0}  GPa'.format('%8.2f'%(BR)) + '\n')
     fo.write('    Reuss shear modulus, G_R = {0}  GPa'.format('%8.2f'%(GR)) + '\n')
 
-    fo.write('    Hill bulk  modulus,  B_H = {0}  GPa'.format('%8.2f'%(BH)))
-    fo.write('    Hill shear modulus,  G_H = {0}  GPa'.format('%8.2f'%(GH)))
+    fo.write('    Hill bulk  modulus,  B_H = {0}  GPa'.format('%8.2f'%(BH)) + '\n')
+    fo.write('    Hill shear modulus,  G_H = {0}  GPa'.format('%8.2f'%(GH)) + '\n')
 
     fo.write('\n'+ lineseparator +'\n')
 
-    fo.write('    Voigt Young modulus,  E_V = {0}  GPa'.format('%8.2f'%(EV)))
+    fo.write('    Voigt Young modulus,  E_V = {0}  GPa'.format('%8.2f'%(EV )) + '\n')
     fo.write('    Voigt Poisson ratio, nu_V = {0}'     .format('%8.2f'%(nuV)) + '\n')
 
-    fo.write('    Reuss Young modulus,  E_R = {0}  GPa'.format('%8.2f'%(ER)))
+    fo.write('    Reuss Young modulus,  E_R = {0}  GPa'.format('%8.2f'%(ER )) + '\n')
     fo.write('    Reuss Poisson ratio, nu_R = {0}'     .format('%8.2f'%(nuR)) + '\n')
 
-    fo.write('    Hill Young modulus,   E_H = {0}  GPa'.format('%8.2f'%(EH)))
-    fo.write('    Hill Poisson ratio,  nu_H = {0}'     .format('%8.2f'%(nuH)))
+    fo.write('    Hill Young modulus,   E_H = {0}  GPa'.format('%8.2f'%(EH )) + '\n')
+    fo.write('    Hill Poisson ratio,  nu_H = {0}'     .format('%8.2f'%(nuH)) + '\n')
 
     fo.write('\n'+ lineseparator +'\n')
 
-    fo.write('    Elastic Anisotropy in polycrystalline, AVR = {0} %'.format('%8.3f'%(AVR)))
+    fo.write('    Elastic Anisotropy in polycrystalline, AVR = {0} %'.format('%8.3f'%(AVR)) + '\n')
 
     fo.write('\n'+ lineseparator +'\n')
 
