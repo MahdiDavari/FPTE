@@ -43,11 +43,13 @@ def fpte_ensemle_average_aimd(exclude_steps = 1500):
     os.system('rm -f tmp_pullay')
 
     os.system("grep T= OSZICAR  | awk 'BEGIN {T=0.} {T+=$3} END {print T , $1}'  >   tmp_file  ")
+    os.system("grep T= OSZICAR  | wc -l   >>   tmp_file  ")
+
 
     with open('tmp_file') as f:
         T, tot = f.readline().split()
         T = int(T)
-        tot = int(tot)
+        tot = int(f.readline().strip())
         f.close()
 
     equilibrated = tot - exclude_steps
