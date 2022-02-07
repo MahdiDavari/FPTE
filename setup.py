@@ -4,12 +4,12 @@ import sys
 
 from setuptools import setup, find_packages
 
-from .src import FPTE
-from .src.FPTE import _min_dependencies as min_deps  # noqa
+import FPTE
+from FPTE import _min_dependencies as min_deps  # noqa
 
-DISTNAME = "FPTE",
+DISTNAME = "FPTE"
 VERSION = FPTE.__version__
-SCRIPTS = ["FPTE"]
+SCRIPTS = ["FPTE/FPTE"]
 AUTHOR = "Mahdi Davari"
 AUTHOR_EMAIL = "Mahdi.Davari@iCloud.com"
 DESCRIPTION = "The FPTE package is a collection of tools for finite pressure temperature " \
@@ -60,7 +60,7 @@ else:
 
 
 def setup_package():
-    """main function for metadata and instalation
+    """main function for metadata and installations
     """
     metadata = dict(
         name=DISTNAME,
@@ -75,9 +75,8 @@ def setup_package():
         version=VERSION,
         long_description=LONG_DESCRIPTION,
         long_description_content_type=LONG_DESCRIPTION_CONTENT,
-        packages=find_packages(where="src"),
-        package_dir={"": "src"},
-        include_package_data=True,
+        packages=find_packages(), # where="src"
+        # package_dir={"": "src"},
         install_requires=min_deps.tag_to_packages["install"],
         classifiers=[
             "Intended Audience :: Science/Research",
