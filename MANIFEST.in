@@ -1,2 +1,2 @@
 include *.rst LICENSE.rst CHANGES.rst requirements*.txt
-recursive-include src/FPTE *.py *.json *.yaml
+recursive-include FPTE *.py *.json *.yaml

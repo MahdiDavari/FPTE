@@ -1,0 +1,88 @@
+#!/usr/bin/env python
+# coding: utf-8
+# Distributed under the terms of the MIT License.
+"""A master convenience script with different functions enabled through argparse
+"""
+
+import argparse
+
+from FPTE import __version__
+from FPTE.FPTE_Analyze_Stress import fpte_analyze
+from FPTE.FPTE_RMSD import fpte_rmsd
+from FPTE.FPTE_Result_Stress_2nd import fpte_results
+from FPTE.FPTE_Setup_VASP import fpte_setup
+from FPTE.FPTE_clean import fpte_clean
+
+
+def main():
+    """
+    Handle main.
+    """
+    parser = argparse.ArgumentParser(
+        description="""
+    The FPTE package is a collection of tools for finite pressure temperature elastic constants'
+    calculation. Features include, but are not limited to stress-strain method for getting 
+    second order elastic tensors using DFT package VASP as well as, ab initio molecular dynamic
+    method for temperature dependent elastic constants. The package is free and ... \
+    \
+    This script works with several options. To see the options type "FPTE -h".""",
+        epilog="""Version: {}""".format(__version__)
+    )
+
+    parser.add_argument("-s", "--setup",
+                        action='store_true', dest='setup', default=False,
+                        help="setup is the first step for the elastic constant calculation."
+                             "you can create the deformed structures and start the "
+                             "calculations.")
+
+    parser.add_argument("-a", "--analyze",
+                        action='store_true', dest='analyze', default=False,
+                        help="this tool is for analyses of the collected stresses for different"
+                             " strained structures if you are running finite temperature, "
+                             "it may take a moment for ensemble averaging of all the MD steps.")
+
+    parser.add_argument("-r", "--results",
+                        action='store_true', dest='results', default=False,
+                        help="Finally you need to run --results to get all the calculated Cij"
+                             "along with aggredated properties, i.e., "
+                             "bulk and shear moduli, etc.")
+
+    parser.add_argument("-c", "--clean",
+                        action='store_true', dest='clean', default=False,
+                        help="this cleans the calculation folder and makes it ready "
+                             "to re-submit the job.")
+
+    parser.add_argument("-e", "--rmsd",
+                        action='store_true', dest='rmsd', default=False,
+                        help="this tool calculates and plots the root mean square displacement "
+                             "in the AIMD runs.")
+
+    try:
+        import argcomplete
+        argcomplete.autocomplete(parser)
+    except ImportError:
+        # argcomplete not present.
+        pass
+
+    args = parser.parse_args()
+
+    # try:
+    #     getattr(args, "analyze")
+    # except AttributeError:
+    #     parser.print_help()
+    #     sys.exit(0)
+
+    if args.results:
+        fpte_results()
+    elif args.analyze:
+        fpte_analyze()
+    elif args.setup:
+        fpte_setup()
+    elif args.clean:
+        fpte_clean()
+    elif args.rmsd:
+        fpte_rmsd()
+
+
+if __name__ == "__main__":
+    main()
