@@ -29,6 +29,7 @@ import shutil
 import sys
 
 import numpy as np
+from .exceptions import FolderNotClean
 
 
 # class FPTE_Setup_VASP:
@@ -466,8 +467,11 @@ def fpte_setup():
         else:
             Dstn = 'Deform' + str(cont1)
 
-        os.mkdir(Dstn)
-        os.chdir(Dstn)
+        try:
+            os.mkdir(Dstn)
+            os.chdir(Dstn)
+        except FileExistsError as err:
+            raise FolderNotClean(Dstn) from err
 
         print(Dstn + ', Lagrangian strain = ' + Ls_str[i],
               file=open("Distorted_Parameters", "a"))

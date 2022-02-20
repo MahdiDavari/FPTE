@@ -21,6 +21,7 @@ dependent_packages = {
     "seaborn": ("0.9.0", "docs, examples"),
     "memory_profiler": ("0.57.0", "docs"),
     "pytest": (PYTEST_MIN_VERSION, "tests"),
+    "PyHamcrest": ("2.0.3", "tests"),
     "pytest-cov": ("2.9.0", "tests"),
     "pyamg": ("4.0.0", "tests"),
     "sphinx": ("4.0.1", "docs"),
