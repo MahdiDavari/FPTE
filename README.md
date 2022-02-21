@@ -17,17 +17,17 @@ FPTE requires:
 FPTE 1.2.0 and later require Python 3.7 or newer. FPTE 1.1.0 and later require Python 3.4 or
 newer.
 
-FPTE plotting capabilities (i.e., functions start with ``plot_`` and classes end with "Display")
+FPTE plotting capabilities (i.e., functions start with `plot_` and classes end with "Display")
 require Matplotlib (>= 2.2.4).
 
 ### User installation
 
 If you already have a working installation of numpy and scipy, the easiest way to install FPTE
-is using ``pip``:
+is using `pip`:
 
     pip install -U FPTE
 
-or ``install from source``:
+or `install from source`:
 
     git clone https://github.com/MahdiDavari/FPTE
     cd FPTE
@@ -109,8 +109,8 @@ $$ $$
 1. Golesorkhtabar, Rostam, et al., “ElaStic: A Tool for Calculating Second-Order Elastic
    Constants from First Principles.” Computer Physics Communications 184, no. 8 (2013): 1861–73.
 
-1. Karki, Bijaya B. “High-Pressure Structure and Elasticity of the Major Silicate and Oxide
+2. Karki, Bijaya B. “High-Pressure Structure and Elasticity of the Major Silicate and Oxide
    Minerals of the Earth’s Lower Mantle,” 1997.
 
-2. Barron, THK, and ML Klein. “Second-Order Elastic Constants of a Solid under Stress.”
+3. Barron, THK, and ML Klein. “Second-Order Elastic Constants of a Solid under Stress.”
    Proceedings of the Physical Society 85, no. 3 (1965): 523.
