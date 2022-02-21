@@ -75,8 +75,7 @@ def setup_package():
         version=VERSION,
         long_description=LONG_DESCRIPTION,
         long_description_content_type=LONG_DESCRIPTION_CONTENT,
-        packages=find_packages(), # where="src"
-        # package_dir={"": "src"},
+        packages=find_packages(),
         install_requires=min_deps.tag_to_packages["install"],
         classifiers=[
             "Intended Audience :: Science/Research",
@@ -84,7 +83,7 @@ def setup_package():
             "Programming Language :: Python",
             "Topic :: Software Development",
             "Topic :: Scientific/Engineering",
-            "Development Status :: 3 - Stable",
+            "Development Status :: 5 - Production/Stable",
             "Operating System :: POSIX",
             "Operating System :: Unix",
             "Operating System :: MacOS",

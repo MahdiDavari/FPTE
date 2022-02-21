@@ -8,4 +8,4 @@ temperature dependent elastic constants. The package is free and ...
 
 __author__ = "Mahdi Davari"
 __email__ = "Mahdi.Davari@iCloud.com"
-__version__ = "1.2.0"
+__version__ = "1.2.1"
