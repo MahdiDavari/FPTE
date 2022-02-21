@@ -100,7 +100,7 @@ def setup_package():
 
         python_requires=">=3.7",
         package_data={"": ["*.json", "*.yaml"]},
-        **extra_setuptools_args,
+        **extra_setuptools_args
     )
     setup(**metadata)
 
