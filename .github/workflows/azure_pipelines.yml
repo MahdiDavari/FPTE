@@ -23,7 +23,7 @@ variables:
 
 jobs:
 # Mac and Linux use the same template
-- template: ci/posix.yml
+- template: .github/workflows/ci/posix.yml
   parameters:
     name: macOS
     vmImage: macOS-10.15
