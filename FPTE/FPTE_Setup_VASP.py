@@ -596,8 +596,8 @@ def fpte_setup():
             os.system('bsub < Submit_Job')
 
             # --------------------------------------------------------------------------------------------------
-            os.chdir('../src/')
-        os.chdir('../src/')
+            os.chdir('../')
+        os.chdir('../')
     # fdis.close()
     # os.system('mkdir Structures_VASP; cp Dst??/Dst??_??/POSCAR Structures_VASP/')
     # --------------------------------------------------------------------------------------------------
