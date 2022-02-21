@@ -29,6 +29,7 @@ import shutil
 import sys
 
 import numpy as np
+
 from .exceptions import FolderNotClean
 
 
