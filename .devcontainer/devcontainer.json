@@ -21,9 +21,12 @@
     "forwardPorts": [
         8501
     ],
+
     // Use 'postCreateCommand' to run commands after the container is created.
     // Install app dependencies.
-    "postCreateCommand": "python setup.py install",
+    "postCreateCommand": "python -m pip install .",
+    "postStartCommand": "FPTE --help",
+
     // Use 'postAttachCommand' to run commands after a tool has attached to the container.
     // Start the app.
     // "postAttachCommand": {
