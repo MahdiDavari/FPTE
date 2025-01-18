@@ -12,6 +12,7 @@ FPTE.code-workspace
 *.swp
 *.swo
 build/
+build.sh
 dist/
 MANIFEST
 doc/_build/
