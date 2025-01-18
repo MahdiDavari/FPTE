@@ -110,7 +110,7 @@ strain. In general, we can write
 
 where :math:`X` and :math:`x` are the coordinates before and after the deformation. There are 81 independent
 stiffness coefficients in general; however, this number is reduced to 21 by the requirement of
-the complete Voigt symmetry. In Voigt notation (:math:`c_{ij}`), the elastic constants form a
+the complete Voigt symmetry. In Voigt notation (``c_{ij}``), the elastic constants form a
 symmetric 6x6 matrix
 
 .. math::
