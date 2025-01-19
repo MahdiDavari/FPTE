@@ -108,9 +108,9 @@ strain. In general, we can write
 .. math::
    \frac{ \sum_{t=0}^{N}f(t,k) }{N}
 
-where :math:`X` and :math:`x` are the coordinates before and after the deformation. There are 81 independent
+where $X$ and $x$ are the coordinates before and after the deformation. There are 81 independent
 stiffness coefficients in general; however, this number is reduced to 21 by the requirement of
-the complete Voigt symmetry. In Voigt notation ($`c_{ij}`$), the elastic constants form a
+the complete Voigt symmetry. In Voigt notation ($c_{ij}$), the elastic constants form a
 symmetric 6x6 matrix
 
 .. math::
@@ -119,9 +119,9 @@ symmetric 6x6 matrix
 In single suffix notation (running from 1 to 6), we can also use the matrix representations for
 stress and strain
 
-```math
+$$
 \left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
-```
+$$
 
 and
 
