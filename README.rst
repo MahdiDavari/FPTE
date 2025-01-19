@@ -128,7 +128,7 @@ and
 .. math::
    \frac{ \sum_{t=0}^{N}f(t,k) }{N}
 
-where the stress components are $\sigma_1$ = $\sigma_xx$ ; $\sigma_2$
+where the stress components are `$\sigma_1$` = $\sigma_xx$ ; $\sigma_2$
 = $\sigma_yy$ ; $\sigma_3$ = $\sigma_zz$ ; $\sigma_4$ =
 $\sigma_yz$ ; $\sigma_5$ = $\sigma_zx$ ; $\sigma_6$ =
 $\sigma_xy$, and the strain components are $\epsilon_1$ = $\epsilon_
