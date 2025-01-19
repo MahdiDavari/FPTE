@@ -125,6 +125,11 @@ $$
 
 and
 
+.. image:: https://latex.codecogs.com/svg.latex?e^{i\pi}=-1
+   :alt: Euler's formula
+
+and
+
 .. math::
    \frac{ \sum_{t=0}^{N}f(t,k) }{N}
 
