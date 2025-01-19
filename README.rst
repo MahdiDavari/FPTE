@@ -100,9 +100,9 @@ crystal are related by
    \frac{ \sum_{t=0}^{N}f(t,k) }{N}
 
 
-where the fourth rank tensors :math:`c_{ijkl}` and :math:`s_{ijkl}` are called the elastic
+where the fourth rank tensors $c_{ijkl}$ and $s_{ijkl}$ are called the elastic
 stiffness coefficients and elastic compliance constants respectively. Here we deal with elastic
-stiffness coefficients :math:`c_{ijkl}`, which govern the proper stress-strain relations at nite
+stiffness coefficients $c_{ijkl}$, which govern the proper stress-strain relations at nite
 strain. In general, we can write
 
 .. math::
@@ -128,23 +128,23 @@ and
 .. math::
    \frac{ \sum_{t=0}^{N}f(t,k) }{N}
 
-where the stress components are :math:`\sigma_1` = :math:`\sigma_xx` ; :math:`\sigma_2`
-= :math:`\sigma_yy` ; :math:`\sigma_3` = :math:`\sigma_zz` ; :math:`\sigma_4` =
-:math:`\sigma_yz` ; :math:`\sigma_5` = :math:`\sigma_zx` ; :math:`\sigma_6` =
-:math:`\sigma_xy`, and the strain components are :math:`\epsilon_1` = :math:`\epsilon_
-xx` ; :math:`\epsilon_2` = :math:`\epsilon_yy` ; :math:`\epsilon_3` =
-:math:`\epsilon_zz` ; :math:`\epsilon_4` = :math:`\epsilon_yz` ; :math:`\epsilon_5`
-= :math:`\epsilon_zx` ; :math:`\epsilon_6` = :math:`\epsilon_xy`. When a crystal
-lattice is deformed with strain (:math:`\epsilon`), new lattice vectors a are related to
-old vectors :math:`a_0` by :math:`a = (I + \epsilon) a_0`, where :math:`I` is identity matrix.
+where the stress components are $\sigma_1$ = $\sigma_xx$ ; $\sigma_2$
+= $\sigma_yy$ ; $\sigma_3$ = $\sigma_zz$ ; $\sigma_4$ =
+$\sigma_yz$ ; $\sigma_5$ = $\sigma_zx$ ; $\sigma_6$ =
+$\sigma_xy$, and the strain components are $\epsilon_1$ = $\epsilon_
+xx$ ; $\epsilon_2$ = $\epsilon_yy$ ; $\epsilon_3$ =
+$\epsilon_zz$ ; $\epsilon_4$ = $\epsilon_yz$ ; $\epsilon_5$
+= $\epsilon_zx$ ; $\epsilon_6$ = $\epsilon_xy$. When a crystal
+lattice is deformed with strain ($\epsilon$), new lattice vectors a are related to
+old vectors $a_0$ by $a = (I + \epsilon) a_0$, where $I$ is identity matrix.
 The stress-strain relations are then simply given by
 
 .. math::
    \frac{ \sum_{t=0}^{N}f(t,k) }{N}
 
-The presence of the symmetry in the crystal reduces further the number of independent :math:`c_
-ij` . A cubic crystal having highest symmetry is characterized by the lowest number (only
-three) of independent elastic constants, :math:`c_11`, :math:`c_12` and :math:`c_44`,
+The presence of the symmetry in the crystal reduces further the number of independent $c_
+ij$ . A cubic crystal having highest symmetry is characterized by the lowest number (only
+three) of independent elastic constants, $c_11$, $c_12$ and $c_44$,
 which in matrix notation is
 
 .. math::
